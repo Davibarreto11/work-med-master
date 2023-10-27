@@ -33,7 +33,7 @@ routes.delete('/patients/:id', PatientsController.delete);
 
 routes.patch('/graficquerys/doctor/:id', GraficQueryController.getSurgeries);
 // routes.patch('/graficquerys/health/:id', GraficQueryController.getHealthInsurance);
-// routes.get('/graficquerys/today', GraficQueryController.getSurgeriesToday);
+routes.get('/graficquerys/today', GraficQueryController.getSurgeriesToday);
 // routes.patch('/graficquerys/surgeries/types/:id', GraficQueryController.getTypesSurgeries);
 // routes.patch('/graficquerys/surgeries', GraficQueryController.getSurgeriesForThreeMonths);
 // routes.patch('/graficquerys/expenses', GraficQueryController.getExpensesSurgeriesForThreeMonths);
