@@ -1,4 +1,4 @@
-import { Router } from 'express';
+// import { Router } from 'express';
 
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
