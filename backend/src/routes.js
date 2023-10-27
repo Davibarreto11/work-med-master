@@ -52,7 +52,7 @@ routes.delete('/rooms/:id', RoomController.delete);
 routes.put('/users', UserController.update);
 routes.get('/users', UserController.index);
 
-routes.get('/graficquery/doctor/:id', GraficQueryController.getPatientCountForDoctor);
+routes.get('/graficquerys/doctor/:id', GraficQueryController.getPatientCountForDoctor);
 
 
 export default routes;
