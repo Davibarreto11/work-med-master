@@ -1,4 +1,4 @@
-// import { Router } from 'express';
+import { Router } from 'express';
 
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
@@ -51,5 +51,8 @@ routes.delete('/rooms/:id', RoomController.delete);
 
 routes.put('/users', UserController.update);
 routes.get('/users', UserController.index);
+
+routes.get('/graficquery/doctor/:id', GraficQueryController.getPatientCountForDoctor);
+
 
 export default routes;
