@@ -31,12 +31,12 @@ routes.put('/patients/:id', PatientsController.update);
 routes.patch('/patients/:id', PatientsController.show);
 routes.delete('/patients/:id', PatientsController.delete);
 
-routes.patch('/graficquerys/doctor/:id', GraficQueryController.getSurgeries);
-// routes.patch('/graficquerys/health/:id', GraficQueryController.getHealthInsurance);
+
+
 // routes.get('/graficquerys/today', GraficQueryController.getSurgeriesToday);
-// routes.patch('/graficquerys/surgeries/types/:id', GraficQueryController.getTypesSurgeries);
-// routes.patch('/graficquerys/surgeries', GraficQueryController.getSurgeriesForThreeMonths);
-// routes.patch('/graficquerys/expenses', GraficQueryController.getExpensesSurgeriesForThreeMonths);
+routes.patch('/graficquerys/surgeries/types/:id', GraficQueryController.getTypesSurgeries);
+routes.patch('/graficquerys/surgeries', GraficQueryController.getSurgeriesForThreeMonths);
+routes.patch('/graficquerys/expenses', GraficQueryController.getExpensesSurgeriesForThreeMonths);
 
 routes.get('/doctors', DoctorController.index);
 routes.patch('/doctors/:id', DoctorController.show);
@@ -52,7 +52,15 @@ routes.delete('/rooms/:id', RoomController.delete);
 routes.put('/users', UserController.update);
 routes.get('/users', UserController.index);
 
-routes.get('/graficquerys/doctor/:id', GraficQueryController.getPatientCountForDoctor);
+// routes.get('/graficquerys/doctor/:id', GraficQueryController.getPatientCountForDoctor);
+routes.patch('/graficquerys/doctor/:id', GraficQueryController.getSurgeries);
+routes.patch('/graficquerys/patients/:id', GraficQueryController.getPatientCountForToday);
+routes.patch('/graficquerys/surgeriescount/:id', GraficQueryController.getSurgeriesCount);
+routes.patch('/graficquerys/patientsformonth/:id',GraficQueryController.getPatientsForCurrentMonth);
+routes.patch('/graficquerys/patientslastmonth/:id',GraficQueryController.getPatientsForLastMonth);
+routes.get('/graficquerys/patientstwomonth',GraficQueryController.getPatientsForTwoMonthsAgo);
+routes.get('/graficquerys/medichistory',GraficQueryController.getMaxMedicHistory);
+routes.patch('/graficquerys/typessurgeries',GraficQueryController.getTypesSurgeries);
 
 
 export default routes;
