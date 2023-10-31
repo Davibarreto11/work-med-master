@@ -3,13 +3,17 @@ import Patient from '../models/Patient';
 import Surgery from '../models/Surgery';
 
 class GraficQueryController {
-  async getPatientCountForDoctor(doctorId) {
-    const count = await Patient.count({
+  async getSurgeries(req, res) {
+    // const doctor = await Doctor.findByPk();
+    const { count } = await Patient.findAndCountAll({
       where: {
-        doctor_id: doctorId,
+        doctor_id: {
+          [Op.eq]: req.params.id,
+        },
       },
     });
-    return count;
+
+    return res.json(count);
   }
 
   async getPatientCountForToday() {
