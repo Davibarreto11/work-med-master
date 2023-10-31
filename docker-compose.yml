@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      # POSTGRES_DB: work-med
+      POSTGRES_DB: workmed
+    ports:
+      - "5432:5432"
+    volumes:
+      - /c/Users/mathe/OneDrive/Área de Trabalho/projetos/work-med-master/backend/database:/var/lib/postgresql/data
+      #mude o diretório do seu database o :/var/lib/postgresql/data é o mesmo
+
+  backend:
+    image: node:18-slim
+    container_name: api
+    working_dir: /home/node/app
+    volumes:
+      - /c/Users/mathe/OneDrive/Área de Trabalho/projetos/work-med-master/backend:/home/node/app
+      #mude o diretório
+    depends_on:
+      - db
+    ports:
+      - "3333:3333"
+    command: yarn dev 
+
+  frontend:
+    image: node:18-slim
+    container_name: web
+    working_dir: /home/node/app
+    volumes:
+      - /c/Users/mathe/OneDrive/Área de Trabalho/projetos/work-med-master/frontend:/home/node/app
+      #mude o diretório
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    command: yarn start 
