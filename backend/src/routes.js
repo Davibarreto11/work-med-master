@@ -54,13 +54,15 @@ routes.get('/users', UserController.index);
 
 // routes.get('/graficquerys/doctor/:id', GraficQueryController.getPatientCountForDoctor);
 routes.patch('/graficquerys/doctor/:id', GraficQueryController.getSurgeries);
-routes.patch('/graficquerys/patients/:id', GraficQueryController.getPatientCountForToday);
+routes.get('/graficquerys/patients', GraficQueryController.getPatientCountForToday);
 routes.patch('/graficquerys/surgeriescount/:id', GraficQueryController.getSurgeriesCount);
-routes.patch('/graficquerys/patientsformonth/:id',GraficQueryController.getPatientsForCurrentMonth);
-routes.patch('/graficquerys/patientslastmonth/:id',GraficQueryController.getPatientsForLastMonth);
+routes.get('/graficquerys/patientsformonth',GraficQueryController.getPatientsForCurrentMonth);
+routes.get('/graficquerys/patientslastmonth',GraficQueryController.getPatientsForLastMonth);
 routes.get('/graficquerys/patientstwomonth',GraficQueryController.getPatientsForTwoMonthsAgo);
 routes.get('/graficquerys/medichistory',GraficQueryController.getMaxMedicHistory);
 routes.patch('/graficquerys/typessurgeries',GraficQueryController.getTypesSurgeries);
+routes.patch('/graficquerys/expensesforlastmonth',GraficQueryController.getExpensesForLastMonth);
+
 
 
 export default routes;
