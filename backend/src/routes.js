@@ -39,6 +39,7 @@ routes.get('/graficquerys/today', GraficQueryController.getSurgeriesToday);
 // routes.patch('/graficquerys/expenses', GraficQueryController.getExpensesSurgeriesForThreeMonths);
 
 routes.get('/doctors', DoctorController.index);
+routes.post('/doctors', DoctorController.store);
 routes.patch('/doctors/:id', DoctorController.show);
 routes.put('/doctors/:id', DoctorController.update);
 routes.delete('/doctors/:id', DoctorController.delete);
