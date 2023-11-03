@@ -98,10 +98,10 @@ class GraficQueryController {
   //   return res.status(200);
   // }
 
-  // async getMaxMedicHistory(req,res) {
-  //   const maxmedic = await Patient.max('medic_history');
-  //   return res.json(maxmedic);
-  // }
+  async getMaxMedicHistory(req,res) {
+    const maxmedic = await Patient.max('medic_history');
+    return res.json(maxmedic);
+  }
 
 //   async getTypesSurgeries(req, res) {
 //     return res.json({ ok: true });
