@@ -18,12 +18,12 @@ class GraficQueryController {
     return res.json(count);
   }
 
-  // async getPatientCountForToday(req,res) {
-  //   const countPatientsWithSameDay = await Patient.count({
-  //     where: {[Op.ep]: literal(`DATE_PART('DAY', "created_at") = DATE_PART('DAY', CURRENT_DATE)`)},
-  //   });
-  //   return res.json(countPatientsWithSameDay);
-  // }
+  async getPatientCountForToday(req,res) {
+    const countPatientsWithSameDay = await Patient.count({
+      where: {[Op.ep]: literal(`DATE_PART('DAY', "created_at") = DATE_PART('DAY', CURRENT_DATE)`)},
+    });
+    return res.json(countPatientsWithSameDay);
+  }
 
   // // async getSurgeriesCount(req,res) {
   // //   const surgeries = await Surgery.findAll({
