@@ -54,16 +54,16 @@ class GraficQueryController {
     return res.json(patients);
   }
 
-  // async getPatientsForLastMonth(req,res) {
-  //   const patients = await Patient.findAll({
-  //     where: Sequelize.where(
-  //       Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')),
-  //       Sequelize.literal('DATE_PART(\'month\', CURRENT_TIMESTAMP) - 1')
-  //     ),
-  //     attributes: ['name', [Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')), 'mes']],
-  //   });
-  //   return res.json(patients);
-  // }
+  async getPatientsForLastMonth(req,res) {
+    const patients = await Patient.findAll({
+      where: Sequelize.where(
+        Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')),
+        Sequelize.literal('DATE_PART(\'month\', CURRENT_TIMESTAMP) - 1')
+      ),
+      attributes: ['name', [Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')), 'mes']],
+    });
+    return res.json(patients);
+  }
 
   // async getPatientsForTwoMonthsAgo(req,res) {
   //   const patients = await Patient.findAll({
