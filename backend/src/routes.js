@@ -33,10 +33,7 @@ routes.delete('/patients/:id', PatientsController.delete);
 
 
 
-// routes.get('/graficquerys/today', GraficQueryController.getSurgeriesToday);
-routes.patch('/graficquerys/surgeries/types/:id', GraficQueryController.getTypesSurgeries);
-routes.patch('/graficquerys/surgeries', GraficQueryController.getSurgeriesForThreeMonths);
-routes.patch('/graficquerys/expenses', GraficQueryController.getExpensesSurgeriesForThreeMonths);
+
 
 routes.get('/doctors', DoctorController.index);
 routes.patch('/doctors/:id', DoctorController.show);
@@ -60,9 +57,10 @@ routes.get('/graficquerys/patientsformonth',GraficQueryController.getPatientsFor
 routes.get('/graficquerys/patientslastmonth',GraficQueryController.getPatientsForLastMonth);
 routes.get('/graficquerys/patientstwomonth',GraficQueryController.getPatientsForTwoMonthsAgo);
 routes.get('/graficquerys/medichistory',GraficQueryController.getMaxMedicHistory);
-routes.get('/graficquerys/expensesfortmonth',GraficQueryController.getExpensesForCurrentMonth);
-// routes.get('/graficquerys/expenseslastmonth',GraficQueryController.getExpensesForLastMonth);
-// routes.patch('/graficquerys/typessurgeries',GraficQueryController.getTypesSurgeries);
+routes.get('/graficquerys/expensesformonth',GraficQueryController.getExpensesForCurrentMonth);
+routes.get('/graficquerys/expenseslastmonth',GraficQueryController.getExpensesForLastMonth);
+routes.get('/graficquerys/expensestwomonth',GraficQueryController.getExpensesForTwoMonths);
+
 
 
 

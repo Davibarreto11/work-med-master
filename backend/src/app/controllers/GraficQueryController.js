@@ -35,7 +35,9 @@ class GraficQueryController {
   //     include: [{
   //       model: Patient,
   //       required: true, // INNER JOIN
-        
+  //       on: {
+  //         'surgeries.id': Sequelize.col('patients.surgery_id'),
+  //       },
   //     }],
   //    group: [Surgery.name],
   //    })
@@ -86,33 +88,31 @@ class GraficQueryController {
     return res.json(sum);
   }
 
-  // async getExpensesForLastMonth(req,res) {
-  //   const sum = await Patient.sum('expenses', {
-  //     where: Sequelize.where(
-  //       Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')),
-  //       Sequelize.literal('DATE_PART(\'month\', CURRENT_TIMESTAMP) -1')
-  //     ),
-  //   });
-  //   return res.json(sum);
-  // }
+  async getExpensesForLastMonth(req,res) {
+    const sum = await Patient.sum('expenses', {
+      where: Sequelize.where(
+        Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')),
+        Sequelize.literal('DATE_PART(\'month\', CURRENT_TIMESTAMP) -1')
+      ),
+    });
+    return res.json(sum);
+  }
+
+  async getExpensesForTwoMonths(req, res) {
+    const sum = await Patient.sum('expenses', {
+      where: Sequelize.where(
+        Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')),
+        Sequelize.literal('DATE_PART(\'month\', CURRENT_TIMESTAMP) -2')
+      ),
+    });
+    return res.json(sum);
+  }
+
 
   async getMaxMedicHistory(req,res) {
     const maxmedic = await Patient.max('medic_history');
     return res.json(maxmedic);
   }
-
-  // async getTypesSurgeries(req, res) {
-  //   return res.json({ ok: true });
-  // }
-
-  // async getSurgeriesForThreeMonths(req, res) {
-  //   return res.json({ ok: true });
-  // }
-
-  // async getExpensesSurgeriesForThreeMonths(req, res) {
-  //   return res.json({ ok: true });
-  // }
-
 
 }
 
