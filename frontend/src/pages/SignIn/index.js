@@ -10,7 +10,7 @@ import AuthLayout from '../_layouts/auth';
 import Logo from '../../assets/logo.svg';
 import workmed from '../../assets/workmed.svg';
 import vector from '../../assets/Vector.svg';
-import email from '../../assets/email.svg';
+import email from '../../assets/emails.svg';
 import pass from '../../assets/pass.svg';
 
 import { Container, Forms } from './styles';
