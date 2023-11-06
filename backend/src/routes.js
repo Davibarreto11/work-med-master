@@ -60,8 +60,9 @@ routes.get('/graficquerys/patientsformonth',GraficQueryController.getPatientsFor
 routes.get('/graficquerys/patientslastmonth',GraficQueryController.getPatientsForLastMonth);
 routes.get('/graficquerys/patientstwomonth',GraficQueryController.getPatientsForTwoMonthsAgo);
 routes.get('/graficquerys/medichistory',GraficQueryController.getMaxMedicHistory);
+routes.get('/graficquerys/expensesfortmonth',GraficQueryController.getExpensesForCurrentMonth);
+// routes.get('/graficquerys/expenseslastmonth',GraficQueryController.getExpensesForLastMonth);
 // routes.patch('/graficquerys/typessurgeries',GraficQueryController.getTypesSurgeries);
-// routes.get('/graficquerys/expensesforlastmonth',GraficQueryController.getExpensesForLastMonth);
 
 
 
