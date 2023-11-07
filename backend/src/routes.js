@@ -52,7 +52,7 @@ routes.get('/users', UserController.index);
 
 routes.patch('/graficquerys/doctor/:id', GraficQueryController.getSurgeries);
 routes.get('/graficquerys/patients', GraficQueryController.getPatientCountForToday);
-// routes.get('/graficquerys/surgeriescount', GraficQueryController.getSurgeriesCount);
+routes.get('/graficquerys/surgerycount', GraficQueryController.getCountSurgeries);
 routes.get('/graficquerys/patientsformonth',GraficQueryController.getPatientsForCurrentMonth);
 routes.get('/graficquerys/patientslastmonth',GraficQueryController.getPatientsForLastMonth);
 routes.get('/graficquerys/patientstwomonth',GraficQueryController.getPatientsForTwoMonthsAgo);

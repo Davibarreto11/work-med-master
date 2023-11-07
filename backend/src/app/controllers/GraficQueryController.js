@@ -1,4 +1,4 @@
-import { Op, literal, fn, Sequelize, col, where} from 'sequelize';
+import { Op, literal, fn, Sequelize, col, where, QueryTypes} from 'sequelize';
 import Patient from '../models/Patient';
 import Surgery from '../models/Surgery';
 import Doctor from '../models/Doctor';
@@ -25,25 +25,33 @@ class GraficQueryController {
     return res.json(countPatientsWithSameDay);
   }
 
-  // async getSurgeriesCount(req,res) {
-  //   const surgeries = await Surgery.findAll({
-  //   attributes: 
-  //     [
-  //       [Sequelize.fn('COUNT', Sequelize.col('name')), 'count'],
-  //       'name',
-  //     ],
-  //     include: [{
-  //       model: Patient,
-  //       required: true, // INNER JOIN
-  //       on: {
-  //         'surgeries.id': Sequelize.col('patients.surgery_id'),
-  //       },
-  //     }],
-  //    group: [Surgery.name],
-  //    })
-  //   console.log(surgeries);
-  //   return res.status(200);
-  // }
+  async getCountSurgeries(req, res) {
+    try {
+      const surgeries = await Surgery.findAll({
+        attributes: [
+          [Sequelize.fn('COUNT', Sequelize.col('name')), 'count'],
+          [Sequelize.col('name'), 'name'],
+        ],
+        include: [
+          {
+            model: Patient,
+            required: true,
+            where: Sequelize.where(
+              Sequelize.col('patients.surgery_id'),
+              '=',
+              Sequelize.col('surgeries.id')
+            ),
+          },
+        ],
+        group: ['name'],
+      });
+  
+      console.log(surgeries);
+      return res.json(surgeries);
+    } catch (error) {
+      return res.status(500).json({ error: 'Erro ao buscar dados.' });
+    }
+  }
 
   async getPatientsForCurrentMonth(req,res) {
     const patients = await Patient.findAll({
