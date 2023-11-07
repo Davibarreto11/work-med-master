@@ -31,13 +31,15 @@ routes.put('/patients/:id', PatientsController.update);
 routes.patch('/patients/:id', PatientsController.show);
 routes.delete('/patients/:id', PatientsController.delete);
 
-routes.patch('/graficquerys/doctor/:id', GraficQueryController.getSurgeries);
+
+// routes.patch('/graficquerys/doctor/:id', GraficQueryController.getSurgeries);
 // routes.patch('/graficquerys/health/:id', GraficQueryController.getHealthInsurance);
-routes.get('/graficquerys/today', GraficQueryController.getSurgeriesToday);
+// routes.get('/graficquerys/today', GraficQueryController.getSurgeriesToday);
 // routes.patch('/graficquerys/surgeries/types/:id', GraficQueryController.getTypesSurgeries);
 // routes.patch('/graficquerys/surgeries', GraficQueryController.getSurgeriesForThreeMonths);
 // routes.patch('/graficquerys/expenses', GraficQueryController.getExpensesSurgeriesForThreeMonths);
-routes.post('/doctors', DoctorController.store);
+// routes.post('/doctors', DoctorController.store);
+
 routes.get('/doctors', DoctorController.index);
 routes.patch('/doctors/:id', DoctorController.show);
 routes.put('/doctors/:id', DoctorController.update);
@@ -51,5 +53,20 @@ routes.delete('/rooms/:id', RoomController.delete);
 
 routes.put('/users', UserController.update);
 routes.get('/users', UserController.index);
+
+
+routes.patch('/graficquerys/doctor/:id', GraficQueryController.getSurgeries);
+routes.get('/graficquerys/patients', GraficQueryController.getPatientCountForToday);
+routes.get('/graficquerys/surgerycount', GraficQueryController.getCountSurgeries);
+routes.get('/graficquerys/patientsformonth',GraficQueryController.getPatientsForCurrentMonth);
+routes.get('/graficquerys/patientslastmonth',GraficQueryController.getPatientsForLastMonth);
+routes.get('/graficquerys/patientstwomonth',GraficQueryController.getPatientsForTwoMonthsAgo);
+routes.get('/graficquerys/medichistory',GraficQueryController.getMaxMedicHistory);
+routes.get('/graficquerys/expensesformonth',GraficQueryController.getExpensesForCurrentMonth);
+routes.get('/graficquerys/expenseslastmonth',GraficQueryController.getExpensesForLastMonth);
+routes.get('/graficquerys/expensestwomonth',GraficQueryController.getExpensesForTwoMonths);
+
+
+
 
 export default routes;
