@@ -29,7 +29,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      convenio: {
+      contact: {
         type: Sequelize.STRING,
         allowNull: false,
       },
