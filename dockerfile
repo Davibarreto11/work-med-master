@@ -1,11 +1,19 @@
-FROM node:18-slim
+# Use uma imagem Node.js como base
+FROM node:20
 
-WORKDIR /home/node/app
+WORKDIR /src
 
-COPY . .
+# Copie o arquivo package.json e package-lock.json para o contêiner
+COPY ./frontend/package*.json ./
 
-RUN yarn install
+# Instale as dependências do aplicativo
+RUN yarn
 
-EXPOSE 3333
+# Copie todo o código-fonte do aplicativo para o contêiner
+COPY ./frontend ./
 
-CMD ["yarn", "dev"]
+# Expõe a porta 3000 em que o aplicativo React será executado
+EXPOSE 3000
+
+# Inicie o aplicativo React
+CMD ["yarn", "start"]
