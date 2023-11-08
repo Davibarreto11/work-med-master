@@ -1,13 +1,36 @@
-version: "3"
-
+version: '3'
 services:
-  db:
-    image: postgres
+  postgres:
+    image: postgres:latest
+    container_name: postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: docker
       POSTGRES_DB: workmed
     ports:
       - "5432:5432"
+  
+  react-app:
+    build: .
+    image: node:20 
+    container_name: react-app
+    working_dir: /src/
+    depends_on:
+      - api
+    volumes:
+      - ./frontend:/src/
+    ports:
+      - "3000:3000"
+    command: yarn start
 
-
+  api:
+    image: node:20 
+    container_name: api
+    working_dir: /src/
+    depends_on:
+      - postgres
+    volumes:
+      - ./backend:/src/
+    ports:
+      - "3333:3333"
+    command: yarn dev
