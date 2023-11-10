@@ -1,4 +1,4 @@
-import { Op, literal, fn, Sequelize, col, where, QueryTypes} from 'sequelize';
+import { Op, literal, fn, Sequelize, col, where, QueryTypes, query} from 'sequelize';
 import Patient from '../models/Patient';
 import Surgery from '../models/Surgery';
 import Doctor from '../models/Doctor';
@@ -24,34 +24,37 @@ class GraficQueryController {
     });
     return res.json(countPatientsWithSameDay);
   }
-
-  async getCountSurgeries(req, res) {
+  
+  async getSurgeriesCount(req, res) {
     try {
+      const { QueryTypes } = require('sequelize');
+      const surgeriesCount = await Sequelize.query(
+        'SELECT COUNT(surgeries.name) AS count, surgeries.name FROM surgeries ' +
+        'INNER JOIN patients ON patients.surgery_id = surgeries.id ' +
+        'GROUP BY surgeries.name',
+        { type: QueryTypes.SELECT }
+      );
+  
       const surgeries = await Surgery.findAll({
-        attributes: [
-          [Sequelize.fn('COUNT', Sequelize.col('name')), 'count'],
-          [Sequelize.col('name'), 'name'],
-        ],
-        include: [
-          {
-            model: Patient,
-            required: true,
-            where: Sequelize.where(
-              Sequelize.col('patients.surgery_id'),
-              '=',
-              Sequelize.col('surgeries.id')
-            ),
-          },
-        ],
-        group: ['name'],
+        where: { name: surgeriesCount.map(surgery => surgery.name) }
       });
   
       console.log(surgeries);
       return res.json(surgeries);
     } catch (error) {
-      return res.status(500).json({ error: 'Erro ao buscar dados.' });
+      console.error(error);
+      return res.status(500).json({ error: 'Internal Server Error' });
     }
   }
+  // async getSurgeriesCount(req, res) {
+  //   const { QueryTypes } = require('sequelize');
+  //   const users = await QueryTypes("'SELECT COUNT(surgeries.name) AS count, surgeries.name FROM surgeries INNER JOIN patients ON patients.surgery_id = surgeries.id GROUP BY surgeries.name", { type: QueryTypes.SELECT });
+  //   const surgeries = await Surgery.findAll({
+  //     where: (users)
+  //   });
+  //   console.log(surgeries);
+  //   return res.json(surgeries);
+  // }
 
   async getPatientsForCurrentMonth(req,res) {
     const patients = await Patient.findAll({
