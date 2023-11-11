@@ -72,3 +72,4 @@ coverage/
 #Firebase
 ios/GoogleService-Info.plist
 package-lock.json*
+yarn.lock*
