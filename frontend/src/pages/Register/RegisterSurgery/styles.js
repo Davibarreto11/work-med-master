@@ -2,28 +2,29 @@ import { styled, css } from 'styled-components';
 import { darken } from 'polished';
 
 export const Container = styled.div`
-  margin: 25px 0 0 40px;
-  flex: 1;
+margin: 25px 0 0 40px;
+flex: 1;
 
-  header {
-    display: flex;
-    align-items: center;
+header {
+  display: flex;
+  align-items: center;
 
-    h2 {
-      font-size: 28px;
-      margin: 2px 0 0 0;
-    }
-
-    img {
-      width: 25px;
-    }
+  h2 {
+    font-size: 48px;
+    margin: 15px 0 10px 10px;
   }
+  img{
+    height:65px;
+    }
+}
 
-  span {
-    font-size: 14px;
-    color: #A4A4A4;
-    opacity: 0.8;
-  }
+span {
+  font-size: 24px;
+  color: #A4A4A4;
+  opacity: 0.8;
+  padding-top:28px;
+  padding-left:20px;
+}
 `;
 
 const sizes = {
@@ -47,74 +48,95 @@ export const InputWrapper = styled.div`
 `;
 
 export const Forms = styled.div`
-  form {
-    display: grid;
-    grid-template-columns: repeat(2, 50%);
-    grid-template-rows: 1fr;
-    flex-wrap: wrap;
-    gap: 5px;
-    width: 50%;
-    margin: 2rem auto;
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: 1fr;
+  flex-wrap: wrap;
+  gap: 25px;
+  width: 50%;
+  margin: 5% 20% 0;
 
-    input {
-      background: rgba(0, 0, 0, 0.4);
-      border: 0;
-      border-radius: 10px;
-      height: 45px;
-      width: 100%;
-      padding: 0 25px;
-      color: #FFF;
-      opacity: 0.8;
-      margin: 0 0 25px;
+input {
+  
+  background: #2A2A2B;
+  border: 0;
+  border-radius: 10px;
+  height: 60px;
+  width: 100%;
+  padding: 0 25px;
+  color: #FFF;
+  opacity: 0.8;
+  margin: 10px 0 25px;
+  box-shadow: 0px 3px 60px 1px rgba(0, 0, 0, 0.35);
 
-      &::placeholder {
-        color: rgba(255, 255, 255, 0.7);
-      }
+  &::placeholder {
+    color: rgba(167, 167, 167, 0.34);
+    font-family: M PLUS 2;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+  }
+}
+.height{
+  height: 200px
+}
+  select {
+    background: #2A2A2B;
+    border: 0;
+    border-radius: 10px;
+    height: 60px;
+    width: 100%;
+    padding: 0 25px;
+    color: #FFF;
+    opacity: 0.8;
+    margin: 10px 0 25px;
+    box-shadow: 0px 3px 60px 1px rgba(0, 0, 0, 0.35);
+
+    &::placeholder {
+      color: rgba(167, 167, 167, 0.34);
+      font-family: M PLUS 2;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+
     }
+  }
 
-    .height{
-      height: 100px;
+  span {
+    color: #FFF;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  i{
+    color: #AC3483;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  button {
+    height: 50px;
+    width: 140px;
+    border: 0;
+    font-size: 18px;
+    color: #FFF;
+    transition: background 0.2s;
+    border-radius: 10px;
+    background: #AC3483;
+    box-shadow: 0px 3px 60px -2px rgba(0, 0, 0, 0.25);
+
+
+    &:hover {
+      background: ${darken(0.03, '#AC3478')};
     }
-
-    select {
-      background: rgba(0, 0, 0, 0.4);
-      border: 0;
-      border-radius: 10px;
-      height: 45px;
-      width: 100%;
-      padding: 0 25px;
-      color: #FFF;
-      opacity: 0.8;
-      margin: 0 0 25px;
-
-      &::placeholder {
-        color: rgba(255, 255, 255, 0.7);
-      }
-    }
-
-
-    span {
-      color: #f64c75;
-      margin: 0 0 5px;
-      align-self: start;
-      font-weight: bold;
-    }
-
-    button {
-      height: 40px;
-      width: 120px;
-      border-radius: 10px;
-      font-weight: bold;
-      border: 0;
-      font-size: 14px;
-      background: #AC3483;
-      color: #FFF;
-      transition: background 0.2s;
-
-      &:hover {
-        background: ${darken(0.03, '#AC3483')};
-      }
-    }
+  }
   }
 
 `;
