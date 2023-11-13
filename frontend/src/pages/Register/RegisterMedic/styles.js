@@ -10,15 +10,20 @@ export const Container = styled.div`
     align-items: center;
 
     h2 {
-      font-size: 28px;
-      margin: 2px 0 0 10px;
+      font-size: 48px;
+      margin: 15px 0 10px 10px;
     }
+    img{
+      width:12px;
+        }
   }
 
   span {
-    font-size: 14px;
+    font-size: 24px;
     color: #A4A4A4;
     opacity: 0.8;
+    padding-top:28px;
+    padding-left:20px;
   }
 `;
 
@@ -48,59 +53,83 @@ export const Forms = styled.div`
     grid-template-columns: repeat(2, 50%);
     grid-template-rows: 1fr;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 25px;
     width: 50%;
-    margin: 2rem auto;
+    margin: 5% 20% auto;
+
 
   input {
-    background: rgba(0, 0, 0, 0.4);
+    
+    background: #2A2A2B;
     border: 0;
     border-radius: 10px;
-    height: 45px;
+    height: 65px;
     width: 100%;
     padding: 0 25px;
     color: #FFF;
     opacity: 0.8;
-    margin: 0 0 25px;
+    margin: 10px 0 25px;
+    box-shadow: 0px 3px 60px 1px rgba(0, 0, 0, 0.35);
 
     &::placeholder {
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(167, 167, 167, 0.34);
+      font-family: M PLUS 2;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+
     }
   }
 
     select {
-      background: rgba(0, 0, 0, 0.4);
+      background: #2A2A2B;
       border: 0;
       border-radius: 10px;
-      height: 45px;
+      height: 60px;
       width: 100%;
       padding: 0 25px;
       color: #FFF;
       opacity: 0.8;
-      margin: 0 0 25px;
+      margin: 10px 0 25px;
+      box-shadow: 0px 3px 60px 1px rgba(0, 0, 0, 0.35);
 
       &::placeholder {
-        color: rgba(255, 255, 255, 0.7);
+        color: rgba(167, 167, 167, 0.34);
+        font-family: M PLUS 2;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+  
       }
     }
 
     span {
-      color: #f64c75;
-      margin: 0 0 5px;
-      align-self: start;
-      font-weight: bold;
+      color: #FFF;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+    i{
+      color: #16A085;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
     }
 
     button {
-      height: 40px;
-      width: 120px;
-      border-radius: 10px;
-      font-weight: bold;
+      height: 50px;
+      width: 140px;
       border: 0;
-      font-size: 14px;
-      background: #16A085;
+      font-size: 18px;
       color: #FFF;
       transition: background 0.2s;
+      border-radius: 10px;
+      background: #16A085;
+      box-shadow: 0px 3px 60px -2px rgba(0, 0, 0, 0.25);
 
 
       &:hover {
