@@ -13,18 +13,24 @@ export const Title = styled.div`
   h2 {
     font-size: 28px;
     margin-top: 10px;
+    font-weight: 500;
   }
 
   header {
     display: flex;
     align-items: center;
-
   }
 
+  header img{
+    height: 2rem;
+    width: 1rem; 
+  }
+  
   span {
-    font-size: 14px;
-    color: #A4A4A4;
-    opacity: 0.8;
+    margin-left: 1rem;
+    font-size: 1em;
+    color: #FFF;
+    font-weight: 300;
   }
 `;
 export const Ficture = styled.div`
@@ -82,6 +88,8 @@ export const Item = styled.div`
         color: #fff;
       }
     }
-
+    button:hover{
+      opacity: 0.7;
+    }
   }
 `;
