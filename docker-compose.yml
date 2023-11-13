@@ -26,9 +26,8 @@ services:
       POSTGRES_REPLICATION_PASSWORD: "replicator_password"
       POSTGRES_MASTER_HOST: postgres-db
     ports:
-      - "5433:5433"  # Use uma porta diferente para o slave, se necessário
+      - "5433:5433"
 
-  
   react-app:
     build: .
     image: node:20 
@@ -60,3 +59,13 @@ services:
       - postgres-db
       - postgres-slave
     command: yarn dev
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api
