@@ -63,7 +63,7 @@ export const Forms = styled.div`
     background: #2A2A2B;
     border: 0;
     border-radius: 10px;
-    height: 65px;
+    height: 60px;
     width: 100%;
     padding: 0 25px;
     color: #FFF;
@@ -133,7 +133,7 @@ export const Forms = styled.div`
 
 
       &:hover {
-        background: ${darken(0.03, '#16A085')};
+        background: ${darken(0.03, '#16A082')};
       }
     }
   }

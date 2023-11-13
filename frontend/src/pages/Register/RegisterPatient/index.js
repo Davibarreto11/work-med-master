@@ -76,15 +76,15 @@ export default function RegisterPatient() {
         <Forms>
           <Form schema={schema} onSubmit={handleSubmit}>
             <InputWrapper>
-              <strong>Nome</strong>
+              <span>Nome</span><i>  *</i>
               <Input name="name" placeholder="Digite seu nome..." />
             </InputWrapper>
             <InputWrapper>
-              <strong>Contato</strong>
+              <span>Contato</span><i>  *</i>
               <Input name="contact" placeholder="Número de celular..." />
             </InputWrapper>
             <InputWrapper>
-              <strong>Gênero</strong>
+              <span>Gênero</span><i>  *</i>
               <Select
                 name="gender"
                 placeholder="Escolha"
@@ -92,7 +92,7 @@ export default function RegisterPatient() {
               />
             </InputWrapper>
             <InputWrapper>
-              <strong>Médico</strong>
+              <span>Médico</span><i>  *</i>
               <Select
                 name="doctor_id"
                 placeholder="Escolha"
@@ -103,7 +103,7 @@ export default function RegisterPatient() {
               />
             </InputWrapper>
             <InputWrapper>
-              <strong>Sala Cirurgica</strong>
+              <span>Sala Cirurgica</span><i>  *</i>
               <Select
                 name="room_id"
                 placeholder="Escolha"
@@ -114,7 +114,7 @@ export default function RegisterPatient() {
               />
             </InputWrapper>
             <InputWrapper>
-              <strong>Tipo de cirurgia</strong>
+              <span>Tipo de cirurgia</span><i>  *</i>
               <Select
                 name="surgery_id"
                 placeholder="Escolha"
@@ -125,27 +125,27 @@ export default function RegisterPatient() {
               />
             </InputWrapper>
             <InputWrapper>
-              <strong>Histórico Médico</strong>
+              <span>Histórico Médico</span><i>  *</i>
               <Input name="medic_history" placeholder="Historico Médico..." />
             </InputWrapper>
             <InputWrapper>
-              <strong>CPF</strong>
+              <span>CPF</span><i>  *</i>
               <Input name="cpf" placeholder="Digite seu CPF" />
             </InputWrapper>
             <InputWrapper>
-              <strong>Endereço</strong>
+              <span>Endereço</span><i>  *</i>
               <Input name="adress" placeholder="Digite seu endereço..." />
             </InputWrapper>
             <InputWrapper>
-              <strong>Endereço</strong>
+              <span>Despesas</span><i>  *</i>
               <Input name="expenses" placeholder="Valor gasto..." />
             </InputWrapper>
             <InputWrapper size="double">
-              <strong>Pós operatório</strong>
+              <span>Pós operatório</span><i>  *</i>
               <Input name="status_post_operation" placeholder="Pós operatório" />
             </InputWrapper>
             <InputWrapper>
-              <button type="submit">Submit</button>
+              <button type="submit">Cadastrar</button>
             </InputWrapper>
           </Form>
         </Forms>
