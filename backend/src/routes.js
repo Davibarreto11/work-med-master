@@ -33,7 +33,9 @@ routes.delete('/patients/:id', PatientsController.delete);
 
 
 
+
 routes.post('/doctors', DoctorController.store);
+
 routes.get('/doctors', DoctorController.index);
 routes.patch('/doctors/:id', DoctorController.show);
 routes.put('/doctors/:id', DoctorController.update);
