@@ -1,11 +1,12 @@
-FROM node:18-slim
+# Dockerfile
+FROM node:latest
 
-WORKDIR /home/node/app
+WORKDIR /src
 
-COPY . .
+COPY package*.json ./
 
 RUN yarn install
 
-EXPOSE 3333
+COPY . .
 
-CMD ["yarn", "dev"]
+CMD ["yarn", "start"]

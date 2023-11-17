@@ -1,13 +1,80 @@
-version: "3"
+version: '3'
 
 services:
-  db:
-    image: postgres
+  postgres-db:
+    image: bitnami/postgresql:latest
+    container_name: postgres-db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: docker
       POSTGRES_DB: workmed
+      POSTGRES_REPLICATION_MODE: "master"
+      POSTGRES_REPLICATION_USER: "replicator"
+      POSTGRES_REPLICATION_PASSWORD: "replicator_password"
     ports:
       - "5432:5432"
 
+  postgres-slave:
+    image: bitnami/postgresql:latest
+    container_name: postgres-slave
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: workmed
+      POSTGRES_REPLICATION_MODE: "slave"
+      POSTGRES_REPLICATION_USER: "replicator"
+      POSTGRES_REPLICATION_PASSWORD: "replicator_password"
+      POSTGRES_MASTER_HOST: "postgres-db"
+      POSTGRES_MASTER_PORT: 5432
+    ports:
+      - "5433:5432"
+    depends_on:
+      - postgres-db
 
+  react-app:
+    build: .
+    image: node:20 
+    container_name: react-app
+    working_dir: /src/
+    depends_on:
+      - api
+    volumes:
+      - ./frontend:/src/
+    ports:
+      - "3000:3000"
+    command: yarn start
+
+  api:
+    image: node:latest
+    container_name: api
+    working_dir: /src/
+    environment:
+      DB_HOST: postgres-db
+      DB_PORT: 5432
+      DB_NAME: workmed
+      DB_USER: postgres
+      DB_PASSWORD: docker
+    volumes:
+      - ./backend:/src/
+    ports:
+      - "3333:3333"
+      - "3334:3333"
+    depends_on:
+      - postgres-db
+      - postgres-slave
+    command: sh -c "yarn install && yarn sequelize db:migrate && yarn dev"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api
+      - react-app
+
+networks:
+  work-med-network:
+    external: true
