@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import 'chart.js/auto';
-import { BarChart } from './chartjs/Bar';
+import { BarChart, surgerysTotal } from './chartjs/Bar';
 import { LineChart } from './chartjs/Line';
 import { WeatherChart } from './chartjs/WeatherChart';
 import { DoughnutTotalSurgeriesChart } from './chartjs/DoughnutTotalSurgeries';
@@ -29,16 +29,30 @@ import {
 } from './styles';
 
 function Dashboard() {
+
   const name = useSelector(((state) => state.user.profile.name));
   const [doctors, setDoctors] = useState([]);
+  const [surgeryToday, setSurgeryToday] = useState();
+
+  // useEffect(() => {
+  //   api.get('doctors')
+  //     .then((response) => { setDoctors(response.data); })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   useEffect(() => {
-    api.get('doctors')
-      .then((response) => { setDoctors(response.data); })
-      .catch((error) => {
-        console.log(error);
-      });
+    api.get('/graficquerys/patients')
+      .then(response => setSurgeryToday(response.data))
+      .catch(error => {
+        console.log(error)
+      })
   }, []);
+
+  useEffect(() => {
+
+  }, [])
 
   return (
     <DefaultLayout>
@@ -58,21 +72,23 @@ function Dashboard() {
           </Link>
         </Top>
         <FlexBox>
-          {doctors.map((doctor) => (
-            <Box key={doctor.id}>
+            <Box >
               <div className="top">
                 <div>
                   <h5 style={{ color: '#FF7723' }}>Médicos</h5>
                 </div>
                 <div>
                   <select style={{ backgroundImage: `url(${Filter})` }}>
-                    <option>{doctor.name}</option>
+                    {doctors.map((doctor) => (
+                      <option key={doctor.id}>{doctor.name}</option>
+                    ))}
+
                   </select>
                 </div>
               </div>
               <div className="bot">
                 <div>
-                  <h4>{doctor.name}</h4>
+                  <h4>{}</h4>
                   <p>Total de Cirurgias</p>
                 </div>
                 <div>
@@ -80,7 +96,6 @@ function Dashboard() {
                 </div>
               </div>
             </Box>
-          ))}
 
           <Box>
             <div className="top">
@@ -115,7 +130,7 @@ function Dashboard() {
             </div>
             <div className="bot">
               <div>
-                <h4><span style={{ color: '#27AE60' }}>0</span> Cirurgias</h4>
+                <h4><span style={{ color: '#27AE60' }}>{surgeryToday}</span> Cirurgias</h4>
                 <p>Registradas Hoje</p>
               </div>
               <div>
@@ -136,7 +151,7 @@ function Dashboard() {
               <div className="grafictotalSurgery">
                 <h4>Total Realizado</h4>
                 <DoughnutTotalSurgeriesChart />
-                <p>10</p>
+                <p>{surgerysTotal}</p>
               </div>
             </div>
           </SurgeriesMonth>
