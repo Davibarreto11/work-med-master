@@ -44,19 +44,19 @@ export default function RegisterRoom() {
         <Forms>
           <Form schema={schema} onSubmit={handleSubmit}>
             <InputWrapper>
-              <strong>Número</strong>
+              <span>Número</span><i>  *</i>
               <Input name="number" placeholder="Ex: Número..." />
             </InputWrapper>
             <InputWrapper>
-              <strong>Andar</strong>
+              <span>Andar</span><i>  *</i>
               <Input name="floor" placeholder="Andar..." />
             </InputWrapper>
             <InputWrapper size="double">
-              <strong>Descrição</strong>
+              <span>Descrição</span><i>  *</i>
               <Input className="height" name="name" placeholder="Digite seu nome..." />
             </InputWrapper>
             <InputWrapper>
-              <button type="submit">Submit</button>
+              <button type="submit">Cadastrar<i>  *</i></button>
             </InputWrapper>
           </Form>
         </Forms>

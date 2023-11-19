@@ -41,15 +41,15 @@ export default function RegisterSurgery() {
         <Forms>
           <Form schema={schema} onSubmit={handleSubmit}>
             <InputWrapper size="double">
-              <strong>Nome</strong>
+              <span>Nome</span><i>  *</i>
               <Input name="name" placeholder="Digite seu nome..." type="text" />
             </InputWrapper>
             <InputWrapper size="double">
-              <strong>Descrição</strong>
+              <span>Descrição</span><i>  *</i>
               <Input className="height" name="description" placeholder="Ex: Neurucirurgião..." type="text" />
             </InputWrapper>
             <InputWrapper>
-              <button type="submit">Submit</button>
+              <button type="submit">Cadastrar</button>
             </InputWrapper>
           </Form>
         </Forms>

@@ -13,17 +13,24 @@ export const Title = styled.div`
   h2 {
     font-size: 28px;
     margin-top: 10px;
+    font-weight: 500;
   }
 
   header {
     display: flex;
     align-items: center;
   }
+  
+  header img{
+    height: 2rem;
+    width: 1rem; 
+  }
 
   span {
-    font-size: 14px;
-    color: #A4A4A4;
-    opacity: 0.8;
+    margin-left: 1rem;
+    font-size: 1em;
+    color: #FFF;
+    font-weight: 300;
   }
 `;
 export const Ficture = styled.div`
@@ -44,6 +51,7 @@ export const Item = styled.div`
     border-radius: 14px;
     color: #FFF;
     font-size: 16px;
+    font-weight: 300;
     width: 20%;
     height: auto;
 
@@ -52,13 +60,13 @@ export const Item = styled.div`
     align-items: center;
 
     span {
-      font-size: 18px;
+      font-size: 1rem;
       align-self: flex-start;
       padding: 15px 0 0px 15px;
     }
 
     strong {
-      font-size: 12px;
+      font-size: .8em;
       color: #A4A4A4;
       align-self: flex-start;
       padding: 0px 0 0px 15px;
@@ -81,6 +89,8 @@ export const Item = styled.div`
         color: #fff;
       }
     }
-
+    button:hover{
+      opacity: 0.7;
+    }
   }
 `;
