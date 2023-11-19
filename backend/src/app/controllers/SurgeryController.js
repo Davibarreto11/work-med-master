@@ -4,7 +4,7 @@ import Surgery from '../models/Surgery';
 class SurgeryController {
   async index(req, res) {
     const surgery = await Surgery.findAll({
-      attributes: ['id', 'name', 'description'],
+      attributes: ['id', 'name', 'description', 'created_at'],
     });
 
     return res.json(surgery);
