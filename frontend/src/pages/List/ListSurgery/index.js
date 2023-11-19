@@ -5,6 +5,9 @@ import { useDispatch } from 'react-redux';
 
 import { removeSurgery } from '../../../store/modules/register/registerSurgery/actions';
 
+import { format, parseISO  } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
+
 import Header from '../../../components/Barside';
 import DefaultLayout from '../../_layouts/default/index';
 import {
@@ -23,12 +26,6 @@ export function ListSurgery() {
 
   const [visible, setVisible] = useState(null);
   const [surgeries, setSurgery] = useState([]);
-  // const [date, setDate] = useState(new Date());
-
-  // const dateFormatted = useMemo(
-  //   () => format(date, "d 'de' MMMM", { locale: pt }),
-  //   [date],
-  // );
 
   useEffect(() => {
     async function loadSurgery() {
@@ -72,7 +69,7 @@ export function ListSurgery() {
                   <li><img src={Detail} alt="Detail" /></li>
                   <li>🚀</li>
                   <li>{surgery.name}</li>
-                  <li>31/08/2002</li>
+                  <li>{format(parseISO(surgery.created_at), "dd' / 'MM' / 'yyyy", { locale: ptBR })}</li>
                   <li>
                     <Link to={`/update/surgery/${surgery.id}`}><img src={Edit} alt="Edit" /></Link>
                     <button onClick={() => handleRemove(surgery.id)} type="button"><img src={Remove} alt="Remove" /></button>
