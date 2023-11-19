@@ -118,7 +118,7 @@ export function ListPatient() {
                     </Part>
                     <Part>
                       <strong>DATA DA CIRURGIA</strong>
-                      <span>{patient.created_at}</span>
+                      <span>{format(parseISO(patient.created_at), "dd' / 'MM' / 'yyyy", {locale: ptBR })}</span>
                     </Part>
                     <Part>
                       <strong>TIPO DA CIRURGIA</strong>
