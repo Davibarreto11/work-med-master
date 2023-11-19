@@ -109,9 +109,26 @@ class GraficQueryController {
   }
 
 
+  // async getSurgeriesCount(req, res) {
+  //   const { QueryTypes } = require('sequelize');
+  //   const surgeriesCount = await Sequelize.query(
+  //     'SELECT COUNT(surgeries.name) AS count, surgeries.name FROM surgeries INNER JOIN patients ON patients.surgery_id = surgeries.id GROUP BY surgeries.name',
+  //     {
+  //       type: QueryTypes.SELECT
+  //     }
+  //   )
+  //   console.log(surgeriesCount)
+  // const surgeries = await Surgery.findAll({
+  //   where: (users)
+  // });
+  // console.log(surgeries);
+  // return res.json(surgeries);
+  // }
+
   async getMaxMedicHistory(req,res) {
     const maxmedic = await Patient.max('medic_history');
-    return res.json(maxmedic);
+    const totalCount = await Patient.count('medic_history')
+    return res.json({ maxmedic, totalCount });
   }
 
 }
