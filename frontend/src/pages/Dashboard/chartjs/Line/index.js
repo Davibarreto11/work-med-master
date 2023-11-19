@@ -6,6 +6,8 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
+export let totalExpenses3Months
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -77,6 +79,9 @@ export function LineChart() {
 
     }],
   };
+
+  totalExpenses3Months = lastTwoMonth + lastMonth + monthActually
+
   const options = {
     responsive: true,
     maintainAspectRatio: false,

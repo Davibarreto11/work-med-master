@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import 'chart.js/auto';
 import { BarChart, surgerysTotal } from './chartjs/Bar';
-import { LineChart } from './chartjs/Line';
+import { LineChart, totalExpenses3Months } from './chartjs/Line';
 import { WeatherChart } from './chartjs/WeatherChart';
 import { DoughnutTotalSurgeriesChart } from './chartjs/DoughnutTotalSurgeries';
 import { DoughnutDoctorChart } from './chartjs/DoughnutDoctors';
@@ -172,7 +172,7 @@ function Dashboard() {
               <p>Com Cirurgias</p>
             </div>
             <div className="">
-              <h4>R<span style={{ color: '#16A085' }}>$:</span> {},<span style={{ color: '#16A085' }}>00</span></h4>
+              <h4>R<span style={{ color: '#16A085' }}>$:</span> {totalExpenses3Months},<span style={{ color: '#16A085' }}>00</span></h4>
             </div>
           </div>
           <div>
