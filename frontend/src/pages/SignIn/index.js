@@ -47,7 +47,7 @@ function SignIn() {
           <img src={pass} class="icon"/>
           <Input name="password" type="password" placeholder="Sua senha" />
         </div>
-          <div class='options'>
+          <div>
             <Link to="/signup">Criar conta gratuita</Link>
             <button type="submit">{loading ? 'Carregando...' : 'Acessar'}<img src={vector}/></button>
           </div>
