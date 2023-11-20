@@ -55,7 +55,7 @@ export function LineChart() {
   }, []);
 
   const data = {
-    labels: [`Mês ${lastTwoMonthDay.rows?.[0].mes}`, `Mês ${lastMonthDay.rows?.[0].mes}`, `Mês ${monthActuallyDay.rows?.[0].mes}`],
+    labels: [`Mês ${lastTwoMonthDay.rows?.[0]?.mes ? lastTwoMonthDay.rows?.[0]?.mes : 0 }`, `Mês ${lastMonthDay.rows?.[0]?.mes ? lastMonthDay.rows?.[0]?.mes : 0 }`, `Mês ${monthActuallyDay.rows?.[0]?.mes ? monthActuallyDay.rows?.[0]?.mes :  0 }`],
     datasets: [{
       label: 'Gastos por Mês',
       data: [lastTwoMonth, lastMonth, monthActually],

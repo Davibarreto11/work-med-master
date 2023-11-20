@@ -58,8 +58,6 @@ function Dashboard() {
       })
   }, []);
 
-
-
   return (
     <DefaultLayout>
       <Barside />
