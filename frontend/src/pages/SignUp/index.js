@@ -63,8 +63,10 @@ function SignUp() {
             <img src={pass} class="icon"/>
             <Input name="password" type="password" placeholder="Sua senha" />
           </div>
-          <Link to="/">Já tenho login</Link>
-          <button type="submit">Criar<img src={vector}/></button>
+          <div>
+            <Link to="/">Já tenho login</Link>
+            <button type="submit">Criar<img src={vector}/></button>
+          </div>
         </Form>
       </Forms>
     </AuthLayout>

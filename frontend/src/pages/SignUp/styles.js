@@ -144,7 +144,7 @@ export const Forms = styled.div`
       font-weight: 400;
       color: #FFF;
       transition: background 0.2s;
-      margin: 40px 0 0 200px;
+      margin-left: 10rem;
 
       &:hover {
         background: ${darken(0.03, '#421452')};
