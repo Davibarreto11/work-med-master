@@ -1,22 +1,9 @@
 import { Op, literal, fn, Sequelize, col, where, QueryTypes, query} from 'sequelize';
 import Patient from '../models/Patient';
 import Surgery from '../models/Surgery';
-import Doctor from '../models/Doctor';
 
 
 class GraficQueryController {
-  async getSurgeries(req, res) {
-    const {count, rows} = await Patient.findAndCountAll({
-      where: {
-        doctor_id: {
-          [Op.eq]: req.params.id,
-        },
-      },
-    });
-
-    return res.json({ count, rows });
-  }
-
   async getPatientCountForToday(req,res) {
     const countPatientsWithSameDay = await Patient.count({
       where: {
@@ -110,23 +97,6 @@ class GraficQueryController {
     });
     return res.json(sum);
   }
-
-
-  // async getSurgeriesCount(req, res) {
-  //   const { QueryTypes } = require('sequelize');
-  //   const surgeriesCount = await Sequelize.query(
-  //     'SELECT COUNT(surgeries.name) AS count, surgeries.name FROM surgeries INNER JOIN patients ON patients.surgery_id = surgeries.id GROUP BY surgeries.name',
-  //     {
-  //       type: QueryTypes.SELECT
-  //     }
-  //   )
-  //   console.log(surgeriesCount)
-  // const surgeries = await Surgery.findAll({
-  //   where: (users)
-  // });
-  // console.log(surgeries);
-  // return res.json(surgeries);
-  // }
 
   async getMaxMedicHistory(req,res) {
     const maxmedic = await Patient.max('medic_history');

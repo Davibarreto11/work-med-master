@@ -46,8 +46,6 @@ routes.delete('/rooms/:id', RoomController.delete);
 routes.put('/users', UserController.update);
 routes.get('/users', UserController.index);
 
-
-routes.patch('/graficquerys/doctor/:id', GraficQueryController.getSurgeries);
 routes.get('/graficquerys/patients', GraficQueryController.getPatientCountForToday);
 routes.get('/graficquerys/surgerycount', GraficQueryController.getSurgeriesCount);
 routes.get('/graficquerys/patientsformonth',GraficQueryController.getPatientsForCurrentMonth);
