@@ -5,6 +5,11 @@ export const Container = styled.div`
   margin: 25px 0 0 40px;
   flex: 1;
 
+  overflow-y:auto;
+  overflow-x:hidden ;
+  height:auto;
+  max-height: 100vh;
+
   header {
     display: flex;
     align-items: center;
@@ -40,6 +45,7 @@ const sizes = {
 };
 
 export const InputWrapper = styled.div`
+
   strong {
     margin: 10px 0 0px 10px;
   }
@@ -58,8 +64,8 @@ export const Forms = styled.div`
     margin: 5% 20% auto;
 
 
+
   input {
-    
     background: #2A2A2B;
     border: 0;
     border-radius: 10px;
@@ -101,7 +107,7 @@ export const Forms = styled.div`
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-  
+
       }
     }
 

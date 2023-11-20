@@ -5,6 +5,11 @@ export const Container = styled.div`
 margin: 25px 0 0 40px;
 flex: 1;
 
+overflow-y:auto;
+overflow-x:hidden ;
+height:auto;
+max-height: 100vh;
+
 header {
   display: flex;
   align-items: center;
@@ -58,7 +63,7 @@ form {
   margin: 5% 20% 0;
 
 input {
-  
+
   background: #2A2A2B;
   border: 0;
   border-radius: 10px;

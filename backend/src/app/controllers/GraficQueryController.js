@@ -1,30 +1,20 @@
 import { Op, literal, fn, Sequelize, col, where, QueryTypes, query} from 'sequelize';
 import Patient from '../models/Patient';
 import Surgery from '../models/Surgery';
-import Doctor from '../models/Doctor';
 
 
 class GraficQueryController {
-  async getSurgeries(req, res) {
-    // const doctor = await Doctor.findByPk();
-    const { count } = await Patient.findAndCountAll({
-      where: {
-        doctor_id: {
-          [Op.eq]: req.params.id,
-        },
-      },
-    });
-
-    return res.json(count);
-  }
-
   async getPatientCountForToday(req,res) {
     const countPatientsWithSameDay = await Patient.count({
-      where: {[Op.ep]: literal(`DATE_PART('DAY', "created_at") = DATE_PART('DAY', CURRENT_DATE)`)},
+      where: {
+        [Op.ep]: literal(`DATE_PART('DAY', "created_at") = DATE_PART('DAY', CURRENT_DATE)`),
+        [Op.ep]: literal(`DATE_PART('MONTH', "created_at") = DATE_PART('MONTH', CURRENT_DATE)`)
+      },
+
     });
     return res.json(countPatientsWithSameDay);
   }
-  
+
   async getSurgeriesCount(req, res) {
     try {
       const { QueryTypes } = require('sequelize');
@@ -34,30 +24,19 @@ class GraficQueryController {
         'GROUP BY surgeries.name',
         { type: QueryTypes.SELECT }
       );
-  
+
       const surgeries = await Surgery.findAll({
         where: { name: surgeriesCount.map(surgery => surgery.name) }
       });
-  
-      console.log(surgeries);
+
       return res.json(surgeries);
     } catch (error) {
-      console.error(error);
       return res.status(500).json({ error: 'Internal Server Error' });
     }
   }
-  // async getSurgeriesCount(req, res) {
-  //   const { QueryTypes } = require('sequelize');
-  //   const users = await QueryTypes("'SELECT COUNT(surgeries.name) AS count, surgeries.name FROM surgeries INNER JOIN patients ON patients.surgery_id = surgeries.id GROUP BY surgeries.name", { type: QueryTypes.SELECT });
-  //   const surgeries = await Surgery.findAll({
-  //     where: (users)
-  //   });
-  //   console.log(surgeries);
-  //   return res.json(surgeries);
-  // }
 
-  async getPatientsForCurrentMonth(req,res) {
-    const patients = await Patient.findAll({
+  async getPatientsForCurrentMonth(req, res) {
+    const patients = await Patient.findAndCountAll({
       where: Sequelize.where(
         Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')),
         Sequelize.literal('DATE_PART(\'month\', CURRENT_DATE)')
@@ -67,8 +46,8 @@ class GraficQueryController {
     return res.json(patients);
   }
 
-  async getPatientsForLastMonth(req,res) {
-    const patients = await Patient.findAll({
+  async getPatientsForLastMonth(req, res) {
+    const patients = await Patient.findAndCountAll({
       where: Sequelize.where(
         Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')),
         Sequelize.literal('DATE_PART(\'month\', CURRENT_TIMESTAMP) - 1')
@@ -79,7 +58,7 @@ class GraficQueryController {
   }
 
   async getPatientsForTwoMonthsAgo(req,res) {
-    const patients = await Patient.findAll({
+    const patients = await Patient.findAndCountAll({
       where: Sequelize.where(
         Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')),
         Sequelize.literal('DATE_PART(\'month\', CURRENT_TIMESTAMP) - 2')
@@ -119,10 +98,10 @@ class GraficQueryController {
     return res.json(sum);
   }
 
-
   async getMaxMedicHistory(req,res) {
     const maxmedic = await Patient.max('medic_history');
-    return res.json(maxmedic);
+    const totalCount = await Patient.count('medic_history')
+    return res.json({ maxmedic, totalCount });
   }
 
 }

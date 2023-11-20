@@ -30,6 +30,8 @@ export function WeatherChart() {
     maintainAspectRatio: false,
   };
 
+
+
   return (
     <Doughnut height={100} width={80} data={data} options={options} />
   );

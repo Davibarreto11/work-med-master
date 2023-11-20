@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import api from '../../../../services/api';
+
 import {
   Chart as ChartJS, BarElement, CategoryScale, LinearScale,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+
+export let totalExpenses3Months
 
 ChartJS.register(
   CategoryScale,
@@ -11,11 +15,50 @@ ChartJS.register(
 );
 
 export function LineChart() {
+  const [monthActually, setMonthActually] = useState({})
+  const [lastMonth, setLastMonth] = useState({})
+  const [lastTwoMonth, setLastTwoMonth] = useState({})
+  const [monthActuallyDay, setMonthActuallyDay] = useState({})
+  const [lastMonthDay, setLastMonthDay] = useState({})
+  const [lastTwoMonthDay, setLastTwoMonthDay] = useState({})
+
+  useEffect(() => {
+    async function loadMedic() {
+      const [monthActuallyDay, lastMonthDay, lastTwoMonthDay] = await Promise.all([
+        api.get('/graficquerys/patientsformonth'),
+        api.get('/graficquerys/patientslastmonth'),
+        api.get('/graficquerys/patientstwomonth'),
+      ]);
+
+      setMonthActuallyDay(monthActuallyDay.data);
+      setLastMonthDay(lastMonthDay.data);
+      setLastTwoMonthDay(lastTwoMonthDay.data);
+    }
+
+    loadMedic();
+  }, []);
+
+  useEffect(() => {
+    async function loadMedic() {
+      const [monthActually, lastMonth, lastTwoMonth] = await Promise.all([
+        api.get('/graficquerys/expensesformonth'),
+        api.get('/graficquerys/expenseslastmonth'),
+        api.get('/graficquerys/expensestwomonth'),
+      ]);
+
+      setMonthActually(monthActually.data);
+      setLastMonth(lastMonth.data);
+      setLastTwoMonth(lastTwoMonth.data);
+    }
+
+    loadMedic();
+  }, []);
+
   const data = {
-    labels: ['Agosto', 'Setembro', 'Novembro'],
+    labels: [`Mês ${lastTwoMonthDay.rows?.[0].mes}`, `Mês ${lastMonthDay.rows?.[0].mes}`, `Mês ${monthActuallyDay.rows?.[0].mes}`],
     datasets: [{
       label: 'Gastos por Mês',
-      data: [12000, 30000, 8000],
+      data: [lastTwoMonth, lastMonth, monthActually],
       backgroundColor: (context) => {
         const { ctx } = context.chart;
         const gradient = ctx.createLinearGradient(0, 0, 0, 290);
@@ -36,6 +79,9 @@ export function LineChart() {
 
     }],
   };
+
+  totalExpenses3Months = lastTwoMonth + lastMonth + monthActually
+
   const options = {
     responsive: true,
     maintainAspectRatio: false,

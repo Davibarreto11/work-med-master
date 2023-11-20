@@ -1,5 +1,4 @@
 version: '3'
-
 services:
   postgres-db:
     image: bitnami/postgresql:latest
@@ -30,7 +29,6 @@ services:
       - "5433:5432"
     depends_on:
       - postgres-db
-
   react-app:
     build: .
     image: node:20 
@@ -45,7 +43,7 @@ services:
     command: yarn start
 
   api:
-    image: node:latest
+    image: node:20
     container_name: api
     working_dir: /src/
     environment:
@@ -74,7 +72,6 @@ services:
     depends_on:
       - api
       - react-app
-
 networks:
   work-med-network:
     external: true
