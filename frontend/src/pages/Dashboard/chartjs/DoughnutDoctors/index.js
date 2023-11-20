@@ -13,30 +13,20 @@ ChartJS.register(
 );
 
 export function DoughnutDoctorChart(id) {
+  // const [doctorsId, setDoctorsId] = useState([])
   const [doctors, setDoctors] = useState([]);
-  const [patitents, setPatients] = useState([]);
+  // const [patitents, setPatients] = useState([]);
 
   useEffect(() => {
-    api.get('doctors')
-      .then((response) => { setDoctors(response.data); })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  useEffect(() => {
-    api.get('patients')
-      .then((response) => { setPatients(response.data); })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    api.patch(`/graficquerys/doctor/${1}`)
+      .then(response => setDoctors(response.data))
+  }, [])
 
   const data = {
     labels: '',
     datasets: [{
       label: '',
-      data: patitents.map((patients) => patients.doctor_id),
+      data: [doctors.count],
       backgroundColor: ['#FF7723'],
       // borderColor: 'black',
       borderWidth: 0,
@@ -53,8 +43,6 @@ export function DoughnutDoctorChart(id) {
 
   return (
     <Doughnut
-      id={doctors.map((doctor) => doctor.id === patitents.map((patient) => patient.id))}
-      height={120}
       width={120}
       data={data}
       options={options}

@@ -6,8 +6,7 @@ import Doctor from '../models/Doctor';
 
 class GraficQueryController {
   async getSurgeries(req, res) {
-    // const doctor = await Doctor.findByPk();
-    const { count } = await Patient.findAndCountAll({
+    const {count, rows} = await Patient.findAndCountAll({
       where: {
         doctor_id: {
           [Op.eq]: req.params.id,
@@ -15,12 +14,16 @@ class GraficQueryController {
       },
     });
 
-    return res.json(count);
+    return res.json({ count, rows });
   }
 
   async getPatientCountForToday(req,res) {
     const countPatientsWithSameDay = await Patient.count({
-      where: {[Op.ep]: literal(`DATE_PART('DAY', "created_at") = DATE_PART('DAY', CURRENT_DATE)`)},
+      where: {
+        [Op.ep]: literal(`DATE_PART('DAY', "created_at") = DATE_PART('DAY', CURRENT_DATE)`),
+        [Op.ep]: literal(`DATE_PART('MONTH', "created_at") = DATE_PART('MONTH', CURRENT_DATE)`)
+      },
+
     });
     return res.json(countPatientsWithSameDay);
   }

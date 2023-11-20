@@ -10,7 +10,6 @@ import { DoughnutTotalSurgeriesChart } from './chartjs/DoughnutTotalSurgeries';
 import { DoughnutDoctorChart } from './chartjs/DoughnutDoctors';
 import { DoughnutMedicHistoric } from './chartjs/DoughnutMedicHistoric';
 import { DoughnutProcedureChart } from './chartjs/DoughnutProcedure';
-// import { UserData } from './chartjs/Data';
 import api from '../../services/api';
 
 import Day from '../../assets/day.svg';
@@ -52,8 +51,14 @@ function Dashboard() {
   }, []);
 
   useEffect(() => {
+    api.get('doctors')
+      .then(response => setDoctors(response.data))
+      .catch(error => {
+        console.log(error)
+      })
+  }, []);
 
-  }, [])
+
 
   return (
     <DefaultLayout>
@@ -81,17 +86,18 @@ function Dashboard() {
                 <div>
                   <select style={{ backgroundImage: `url(${Filter})` }}>
                     {doctors.map((doctor) => (
-                      <option key={doctor.id}>{doctor.name}</option>
+                      <option  key={doctor.id}>{doctor.name}</option>
                     ))}
-
                   </select>
                 </div>
               </div>
               <div className="bot">
-                <div>
-                  <h4>{}</h4>
-                  <p>Total de Cirurgias</p>
-                </div>
+                  {doctors.map(doctor => (
+                    <div>
+                      <h4>{doctor.name} <span style={{ color: '#FF7723' }}>{doctor.speciality}</span></h4>
+                      <p>Total de Cirurgias</p>
+                    </div>
+                  ))}
                 <div>
                   <DoughnutDoctorChart />
                 </div>
