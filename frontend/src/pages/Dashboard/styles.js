@@ -105,7 +105,7 @@ export const Box = styled.div`
   }
 
   width: 32%;
-  height: 30vh;
+  height: 32vh;
   padding: 15px;
   margin: 5px 0 5px 0;
   border-radius: 10px;

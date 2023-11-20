@@ -23,7 +23,7 @@ function List() {
         <Title>
           <header>
             <img src={Retangule} alt="" />
-            <h2>Listar</h2>
+            <h2>Listagem</h2>
           </header>
           <span>Escolha qual item deseja listar</span>
         </Title>
@@ -36,14 +36,14 @@ function List() {
             <strong style={{ color: '#16A085' }}>Medico</strong>
             <img src={ImageDoctor} alt="" />
 
-            <Link to="/list/doctor"><button style={{ background: '#16A085' }} type="submit">Começar</button></Link>
+            <Link to="/list/doctor"><button style={{ background: 'linear-gradient(#16A085, #16A0854D)' }} type="submit">Começar</button></Link>
           </form>
           <form>
             <span>Listar</span>
             <strong style={{ color: '#FF7723' }}>Paciente</strong>
             <img src={ImagePatient} alt="" />
 
-            <Link to="/list/patient"><button style={{ background: '#FF7723' }} type="submit">Começar</button></Link>
+            <Link to="/list/patient"><button style={{ background: 'linear-gradient(#FF7723, #FF77234D)' }} type="submit">Começar</button></Link>
           </form>
           <form>
             <span>Listar</span>
@@ -52,14 +52,14 @@ function List() {
               src={ImageRoom}
               alt=""
             />
-            <Link to="/list/room"><button style={{ background: '#308ECC' }} type="submit">Começar</button></Link>
+            <Link to="/list/room"><button style={{ background: 'linear-gradient(#308ECC, #308ECC4D)' }} type="submit">Começar</button></Link>
           </form>
           <form>
             <span>Listar</span>
             <strong style={{ color: '#AC3483' }}>Cirurgia</strong>
             <img src={ImageSurgery} alt="" />
 
-            <Link to="/list/surgery"><button style={{ background: '#AC3483' }} type="submit">Começar</button></Link>
+            <Link to="/list/surgery"><button style={{ background: 'linear-gradient(#AC3483, #AC34834D)' }} type="submit">Começar</button></Link>
           </form>
         </Item>
       </Container>

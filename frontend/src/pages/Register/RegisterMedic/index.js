@@ -44,19 +44,21 @@ export default function RegisterMedic() {
           <img src={Rectangle} alt="" />
           <h2>Cadastro</h2>
         </header>
+
         <span>Médico</span>
+        
         <Forms>
           <Form schema={schema} onSubmit={handleSubmit}>
             <InputWrapper size="double">
-              <strong>Nome</strong>
+              <span>Nome</span><i>  *</i>
               <Input name="name" placeholder="Digite seu nome..." />
             </InputWrapper>
             <InputWrapper>
-              <strong>Especialidade Médica</strong>
+              <span>Especialidade Médica</span><i>  *</i>
               <Input name="speciality" placeholder="Ex: Neurucirurgião..." />
             </InputWrapper>
             <InputWrapper>
-              <strong>Gênero</strong>
+              <span>Gênero</span><i>  *</i>
               <Select
                 name="gender"
                 placeholder="Escolha"
@@ -64,19 +66,19 @@ export default function RegisterMedic() {
               />
             </InputWrapper>
             <InputWrapper>
-              <strong>CRM</strong>
+              <span>CRM</span><i>  *</i>
               <Input name="crm" placeholder="Digite seu CRM..." />
             </InputWrapper>
             <InputWrapper>
-              <strong>CPF</strong>
+              <span>CPF   </span><i>  *</i>
               <Input name="cpf" placeholder="Digite seu CPF" />
             </InputWrapper>
             <InputWrapper size="double">
-              <strong>Endereço</strong>
+              <span>Endereço</span><i>  *</i>
               <Input name="adress" placeholder="Digite seu endereço..." />
             </InputWrapper>
             <InputWrapper>
-              <button type="submit">Submit</button>
+              <button type="submit">Cadastrar</button>
             </InputWrapper>
           </Form>
         </Forms>

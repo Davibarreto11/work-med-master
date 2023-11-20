@@ -26,20 +26,26 @@ class GraficQueryController {
   }
   
   async getSurgeriesCount(req, res) {
-      const surgeriesCount = await Surgery.findAndCountAll({
-        attributes: [[Sequelize.fn('COUNT', Sequelize.col('name'), 'name')]],
-        include: {
-          model: Patient,
-          required: true,
-          on: {
-            'patient.surgery_id': Sequelize.literal('surgeries.id'),
-          }
-        },
-          group: ['name'],
+    try {
+      const { QueryTypes } = require('sequelize');
+      const surgeriesCount = await Sequelize.query(
+        'SELECT COUNT(surgeries.name) AS count, surgeries.name FROM surgeries ' +
+        'INNER JOIN patients ON patients.surgery_id = surgeries.id ' +
+        'GROUP BY surgeries.name',
+        { type: QueryTypes.SELECT }
+      );
+  
+      const surgeries = await Surgery.findAll({
+        where: { name: surgeriesCount.map(surgery => surgery.name) }
       });
-      console.log(surgeriesCount);
-      return res.json(surgeriesCount);
+  
+      console.log(surgeries);
+      return res.json(surgeries);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Internal Server Error' });
     }
+  }
   // async getSurgeriesCount(req, res) {
   //   const { QueryTypes } = require('sequelize');
   //   const users = await QueryTypes("'SELECT COUNT(surgeries.name) AS count, surgeries.name FROM surgeries INNER JOIN patients ON patients.surgery_id = surgeries.id GROUP BY surgeries.name", { type: QueryTypes.SELECT });
