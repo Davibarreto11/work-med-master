@@ -4,7 +4,7 @@ import Room from '../models/Room';
 class RoomController {
   async index(req, res) {
     const room = await Room.findAll({
-      attributes: ['id', 'name', 'floor', 'number'],
+      attributes: ['id', 'name', 'floor', 'number', 'created_at'],
     });
 
     return res.json(room);

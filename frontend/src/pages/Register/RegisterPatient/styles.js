@@ -5,10 +5,22 @@ export const Container = styled.div`
 margin: 25px 0 0 40px;
 flex: 1;
 
+<<<<<<< HEAD
 header {
   display: flex;
   align-items: center;
 
+=======
+overflow-y:auto;
+overflow-x:hidden ;
+height:auto;
+max-height: 100vh;
+
+header {
+  display: flex;
+  align-items: center;
+
+>>>>>>> 62fad51e76fa7e27fa35e70f902f781278e1095f
   h2 {
     font-size: 48px;
     margin: 15px 0 10px 10px;
@@ -58,6 +70,7 @@ form {
   margin: 5% 20% 0;
 
 input {
+<<<<<<< HEAD
   
   background: #2A2A2B;
   border: 0;
@@ -101,6 +114,51 @@ input {
       font-weight: 400;
       line-height: normal;
 
+=======
+
+  background: #2A2A2B;
+  border: 0;
+  border-radius: 10px;
+  height: 60px;
+  width: 100%;
+  padding: 0 25px;
+  color: #FFF;
+  opacity: 0.8;
+  margin: 10px 0 25px;
+  box-shadow: 0px 3px 60px 1px rgba(0, 0, 0, 0.35);
+
+  &::placeholder {
+    color: rgba(167, 167, 167, 0.34);
+    font-family: M PLUS 2;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+  }
+}
+
+  select {
+    background: #2A2A2B;
+    border: 0;
+    border-radius: 10px;
+    height: 60px;
+    width: 100%;
+    padding: 0 25px;
+    color: #FFF;
+    opacity: 0.8;
+    margin: 10px 0 25px;
+    box-shadow: 0px 3px 60px 1px rgba(0, 0, 0, 0.35);
+
+    &::placeholder {
+      color: rgba(167, 167, 167, 0.34);
+      font-family: M PLUS 2;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+
+>>>>>>> 62fad51e76fa7e27fa35e70f902f781278e1095f
     }
   }
 

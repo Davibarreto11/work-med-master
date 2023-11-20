@@ -46,7 +46,11 @@ export default function RegisterMedic() {
         </header>
 
         <span>Médico</span>
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 62fad51e76fa7e27fa35e70f902f781278e1095f
         <Forms>
           <Form schema={schema} onSubmit={handleSubmit}>
             <InputWrapper size="double">

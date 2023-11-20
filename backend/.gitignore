@@ -19,6 +19,7 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+.editorconfig
 
 # Android/IntelliJ
 #
@@ -73,3 +74,4 @@ coverage/
 ios/GoogleService-Info.plist
 package-lock.json*
 yarn.lock*
+

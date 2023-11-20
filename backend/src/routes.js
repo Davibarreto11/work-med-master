@@ -31,10 +31,7 @@ routes.put('/patients/:id', PatientsController.update);
 routes.patch('/patients/:id', PatientsController.show);
 routes.delete('/patients/:id', PatientsController.delete);
 
-
-
-
-
+routes.post('/doctors', DoctorController.store);
 routes.get('/doctors', DoctorController.index);
 routes.patch('/doctors/:id', DoctorController.show);
 routes.put('/doctors/:id', DoctorController.update);
@@ -52,7 +49,7 @@ routes.get('/users', UserController.index);
 
 routes.patch('/graficquerys/doctor/:id', GraficQueryController.getSurgeries);
 routes.get('/graficquerys/patients', GraficQueryController.getPatientCountForToday);
-// routes.get('/graficquerys/surgerycount', GraficQueryController.getSurgeriesCount);
+routes.get('/graficquerys/surgerycount', GraficQueryController.getSurgeriesCount);
 routes.get('/graficquerys/patientsformonth',GraficQueryController.getPatientsForCurrentMonth);
 routes.get('/graficquerys/patientslastmonth',GraficQueryController.getPatientsForLastMonth);
 routes.get('/graficquerys/patientstwomonth',GraficQueryController.getPatientsForTwoMonthsAgo);

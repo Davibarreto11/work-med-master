@@ -5,6 +5,9 @@ import { useDispatch } from 'react-redux';
 
 import { removeRoom } from '../../../store/modules/register/registerRoom/actions';
 
+import { format, parseISO  } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
+
 import Header from '../../../components/Barside';
 import DefaultLayout from '../../_layouts/default/index';
 import {
@@ -23,12 +26,6 @@ export function ListRoom() {
 
   const [visible, setVisible] = useState(null);
   const [rooms, setRoom] = useState([]);
-  // const [date, setDate] = useState(new Date());
-
-  // const dateFormatted = useMemo(
-  //   () => format(date, "d 'de' MMMM", { locale: pt }),
-  //   [date],
-  // );
 
   useEffect(() => {
     async function loadRoom() {
@@ -72,7 +69,7 @@ export function ListRoom() {
                   <li><img src={Detail} alt="" /></li>
                   <li>🚀</li>
                   <li>{`SALA - ${room.number}`}</li>
-                  <li>31/08/2002</li>
+                  <li>{format(parseISO(room.created_at), "dd' / 'MM' / 'yyyy", {locale: ptBR })}</li>
                   <li>
                     <Link to={`/update/room/${room.id}`}><img src={Edit} alt="Edit" /></Link>
                     <button onClick={() => handleRemove(room.id)} type="button"><img src={Remove} alt="Remove" /></button>

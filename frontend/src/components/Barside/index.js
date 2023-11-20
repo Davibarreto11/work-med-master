@@ -1,7 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { Container, SideBar, Logout } from './styles';
+
+import { signOut } from '../../store/modules/auth/actions';
 
 import Logo from '../../assets/logo.svg';
 import Add from '../../assets/addsquare_purple.svg';
@@ -10,6 +13,13 @@ import Graph from '../../assets/graph_purple.svg';
 import Blogout from '../../assets/logout_purple.svg';
 
 function Header() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleSignOut = () => {
+    dispatch(signOut(navigate));
+  };
+
   return (
     <SideBar>
       <Container>
@@ -22,7 +32,7 @@ function Header() {
           <Link to="/list"><img src={Layer} alt="Layer" /></Link>
         </nav>
       </Container>
-      <Logout>
+      <Logout onClick={handleSignOut}>
         <img src={Blogout} alt="Logout" />
       </Logout>
     </SideBar>
