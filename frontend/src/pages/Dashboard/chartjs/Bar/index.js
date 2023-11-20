@@ -37,7 +37,7 @@ export function BarChart() {
 
 
   const data = {
-    labels: [ `Mês ${lastTwoMonth.rows?.[0].mes}`, `Mês ${lastMonth.rows?.[0].mes}`, `Mês ${monthActually.rows?.[0].mes}`],
+    labels: [ `Mês ${lastTwoMonth.rows?.[0]?.mes ? lastTwoMonth.rows?.[0]?.mes : 0 }`, `Mês ${lastMonth.rows?.[0]?.mes ? lastMonth.rows?.[0]?.mes : 0 }`, `Mês ${ monthActually?.rows?.[0]?.mes ? monthActually?.rows?.[0]?.mes : 0 }`],
     datasets: [{
       label: '',
       data: [lastTwoMonth.count, lastMonth.count, monthActually.count],

@@ -4,6 +4,20 @@ import Surgery from '../models/Surgery';
 
 
 class GraficQueryController {
+  async getSurgeries(req, res) {
+    // const doctor = await Doctor.findByPk();
+    const { count } = await Patient.findAndCountAll({
+      where: {
+        doctor_id: {
+          [Op.eq]: req.params.id,
+        },
+      },
+    });
+
+    return res.json(count);
+  }
+
+
   async getPatientCountForToday(req,res) {
     const countPatientsWithSameDay = await Patient.count({
       where: {
@@ -13,26 +27,6 @@ class GraficQueryController {
 
     });
     return res.json(countPatientsWithSameDay);
-  }
-
-  async getSurgeriesCount(req, res) {
-    try {
-      const { QueryTypes } = require('sequelize');
-      const surgeriesCount = await Sequelize.query(
-        'SELECT COUNT(surgeries.name) AS count, surgeries.name FROM surgeries ' +
-        'INNER JOIN patients ON patients.surgery_id = surgeries.id ' +
-        'GROUP BY surgeries.name',
-        { type: QueryTypes.SELECT }
-      );
-
-      const surgeries = await Surgery.findAll({
-        where: { name: surgeriesCount.map(surgery => surgery.name) }
-      });
-
-      return res.json(surgeries);
-    } catch (error) {
-      return res.status(500).json({ error: 'Internal Server Error' });
-    }
   }
 
   async getPatientsForCurrentMonth(req, res) {
