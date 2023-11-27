@@ -122,7 +122,7 @@ export function ListPatient() {
                     </Part>
                     <Part>
                       <strong>TIPO DA CIRURGIA</strong>
-                      <span>{patient.Surgery.name}</span>
+                      <span>{patient.Surgery?.name ? patient.Surgery?.name : 'Cirgurgia fora dos registros'}</span>
                     </Part>
                     <Part>
                       <strong>PÓS OPERATÓRIO</strong>
@@ -130,11 +130,11 @@ export function ListPatient() {
                     </Part>
                     <Part>
                       <strong>SALA</strong>
-                      <span>{`${patient.Room.floor} - Sala ${patient.Room.number}`}</span>
+                      <span>{patient.Room?.floor ? `${patient.Room?.floor} - Sala ${patient.Room?.number}` : 'Sala fora dos registros'}</span>
                     </Part>
                     <Part>
                       <strong>MÉDICO RESPONSÁVEL</strong>
-                      <span>{patient.Doctor.name}</span>
+                      <span>{patient.Doctor?.name ? patient.Doctor?.name: 'Médico fora dos registros'}</span>
                     </Part>
                     <Part>
                       <strong>TOTAL GASTO</strong>
