@@ -18,6 +18,8 @@ import Edit from '../../../assets/editar.svg';
 import Remove from '../../../assets/excluir.svg';
 import Rectangle from '../../../assets/retacgulePrincipal.svg';
 import Detail from '../../../assets/detailPink.svg';
+import userp from '../../../assets/userPink.svg';
+import cad from '../../../assets/cadastrar.svg';
 
 import api from '../../../services/api';
 
@@ -57,19 +59,23 @@ export function ListSurgery() {
           <img src={Rectangle} alt="Rectangle" />
           <h2>Listagem</h2>
         </header>
-        <span>Cirurgia</span>
+        <span class="sp">Cirurgia</span>
         <Wrapper>
-          <Link to="/register/surgery"><button type="button">Cadastrar</button></Link>
+          <Link to="/register/surgery"><button type="button">Cadastrar<img src={cad}/></button></Link>
           {surgeries.map((surgery, i) => (
             <List key={surgery.id}>
               <Badge onClick={() => (Number(visible)
                 ? handleToggleVisible(null) : handleToggleVisible(i))}
               >
                 <Infor>
-                  <li><img src={Detail} alt="Detail" /></li>
-                  <li>🚀</li>
-                  <li>{surgery.name}</li>
+
+                  <div class="group">
+                    <li><img src={Detail} alt="Detail" /></li>
+                    <li><img src={userp} class="user-l"/></li>
+                    <li>{surgery.name}</li>
+                  </div>
                   <li>{format(parseISO(surgery.created_at), "dd' / 'MM' / 'yyyy", { locale: ptBR })}</li>
+
                   <li>
                     <Link to={`/update/surgery/${surgery.id}`}><img src={Edit} alt="Edit" /></Link>
                     <button onClick={() => handleRemove(surgery.id)} type="button"><img src={Remove} alt="Remove" /></button>
@@ -92,7 +98,7 @@ export function ListSurgery() {
                       <h3>Descrição</h3>
                     </Part>
                     <Part>
-                      <strong>=================</strong>
+                      <strong>Descrição</strong>
                       <span>{surgery.description}</span>
                     </Part>
                   </Grid>
