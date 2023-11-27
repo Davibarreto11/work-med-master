@@ -26,11 +26,6 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-
-  img {
-    /* width:; */
-  }
-
   nav {
     display: flex;
     flex-direction: column;
@@ -46,7 +41,10 @@ export const Container = styled.div`
 
 `;
 
-export const Logout = styled.div`
+export const Logout = styled.button`
+  background: transparent;
+  border: 0;
+
   img {
     padding: 50px 15px;
     width: 75px;

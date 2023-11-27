@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import 'chart.js/auto';
-import { BarChart } from './chartjs/Bar';
-import { LineChart } from './chartjs/Line';
+import { BarChart, surgerysTotal } from './chartjs/Bar';
+import { LineChart, totalExpenses3Months } from './chartjs/Line';
 import { WeatherChart } from './chartjs/WeatherChart';
 import { DoughnutTotalSurgeriesChart } from './chartjs/DoughnutTotalSurgeries';
 import { DoughnutDoctorChart } from './chartjs/DoughnutDoctors';
-import { DoughnutConvenio } from './chartjs/DoughnutConvenio';
+import { DoughnutMedicHistoric } from './chartjs/DoughnutMedicHistoric';
 import { DoughnutProcedureChart } from './chartjs/DoughnutProcedure';
-// import { UserData } from './chartjs/Data';
 import api from '../../services/api';
 
 import Day from '../../assets/day.svg';
@@ -29,15 +28,34 @@ import {
 } from './styles';
 
 function Dashboard() {
+
   const name = useSelector(((state) => state.user.profile.name));
+  const [medicHistoric, setMedicHistoric] = useState('');
   const [doctors, setDoctors] = useState([]);
+  const [surgeryToday, setSurgeryToday] = useState();
 
   useEffect(() => {
-    api.get('doctors')
-      .then((response) => { setDoctors(response.data); })
+    api.get('graficquerys/medichistory')
+      .then((response) => { setMedicHistoric(response.data); })
       .catch((error) => {
         console.log(error);
       });
+  }, []);
+
+  useEffect(() => {
+    api.get('/graficquerys/patients')
+      .then(response => setSurgeryToday(response.data))
+      .catch(error => {
+        console.log(error)
+      })
+  }, []);
+
+  useEffect(() => {
+    api.get('doctors')
+      .then(response => setDoctors(response.data))
+      .catch(error => {
+        console.log(error)
+      })
   }, []);
 
   return (
@@ -58,48 +76,48 @@ function Dashboard() {
           </Link>
         </Top>
         <FlexBox>
-          {doctors.map((doctor) => (
-            <Box key={doctor.id}>
+            <Box >
               <div className="top">
                 <div>
                   <h5 style={{ color: '#FF7723' }}>Médicos</h5>
                 </div>
                 <div>
                   <select style={{ backgroundImage: `url(${Filter})` }}>
-                    <option>{doctor.name}</option>
+                    {doctors.map((doctor) => (
+                      <option  key={doctor.id}>{doctor.name}</option>
+                    ))}
                   </select>
                 </div>
               </div>
               <div className="bot">
-                <div>
-                  <h4>{doctor.name}</h4>
-                  <p>Total de Cirurgias</p>
-                </div>
+                  {doctors.map(doctor => (
+                    <div>
+                      <h4>{doctor.name} <span style={{ color: '#FF7723' }}>{doctor.speciality}</span></h4>
+                      <p>Total de Cirurgias</p>
+                    </div>
+                  ))}
                 <div>
                   <DoughnutDoctorChart />
                 </div>
               </div>
             </Box>
-          ))}
 
           <Box>
             <div className="top">
               <div>
-                <h5 style={{ color: '#308ECC' }}>Convênio</h5>
+                <h5 style={{ color: '#308ECC' }}>Histórico médico</h5>
               </div>
-              <div>
-                <select style={{ backgroundImage: `url(${FilterAzul})` }}>
-                  <option>SUS</option>
-                </select>
+              <div className='icon' style={{ backgroundImage: `url(${FilterAzul})` }} >
+                .
               </div>
             </div>
             <div className="bot">
-              <div>
-                <h4>Selecione o Convenio</h4>
-                <p>Total de Cirurgias</p>
+              <div style={{ maxWidth: 245 }}>
+                <h4>Histórico médico mais comum</h4>
+                <p>Entre nosso pacientes: <span style={{ color: '#308ECC'}}>{medicHistoric.maxmedic}</span></p>
               </div>
               <div>
-                <DoughnutConvenio />
+                <DoughnutMedicHistoric />
               </div>
             </div>
           </Box>
@@ -115,7 +133,7 @@ function Dashboard() {
             </div>
             <div className="bot">
               <div>
-                <h4><span style={{ color: '#27AE60' }}>0</span> Cirurgias</h4>
+                <h4><span style={{ color: '#27AE60' }}>{surgeryToday}</span> Cirurgias</h4>
                 <p>Registradas Hoje</p>
               </div>
               <div>
@@ -136,7 +154,7 @@ function Dashboard() {
               <div className="grafictotalSurgery">
                 <h4>Total Realizado</h4>
                 <DoughnutTotalSurgeriesChart />
-                <p>10</p>
+                <p>{surgerysTotal}</p>
               </div>
             </div>
           </SurgeriesMonth>
@@ -158,7 +176,7 @@ function Dashboard() {
               <p>Com Cirurgias</p>
             </div>
             <div className="">
-              <h4>R<span style={{ color: '#16A085' }}>$:</span> 5555,<span style={{ color: '#16A085' }}>00</span></h4>
+              <h4>R<span style={{ color: '#16A085' }}>$:</span> {totalExpenses3Months},<span style={{ color: '#16A085' }}>00</span></h4>
             </div>
           </div>
           <div>

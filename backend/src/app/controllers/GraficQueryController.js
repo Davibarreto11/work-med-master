@@ -1,7 +1,7 @@
-import { Op } from 'sequelize';
-// import { isToday } from 'date-fns';
+import { Op, literal, fn, Sequelize, col, where, QueryTypes, query} from 'sequelize';
 import Patient from '../models/Patient';
-// import Doctor from '../models/Doctor';
+import Surgery from '../models/Surgery';
+
 
 class GraficQueryController {
   async getSurgeries(req, res) {
@@ -17,40 +17,87 @@ class GraficQueryController {
     return res.json(count);
   }
 
-  async getHealthInsurance(req, res) {
-    return res.json({ ok: true });
-  }
 
-  async getSurgeriesToday(req, res) {
-    const created_at = await Patient.findAll({
-      attributes: ['created_at'],
-    });
-
-    const { count } = await Patient.findAndCountAll({
+  async getPatientCountForToday(req,res) {
+    const countPatientsWithSameDay = await Patient.count({
       where: {
-        created_at: {
-          [Op.lte]: new Date().getDate(),
-        },
+        [Op.ep]: literal(`DATE_PART('DAY', "created_at") = DATE_PART('DAY', CURRENT_DATE)`),
+        [Op.ep]: literal(`DATE_PART('MONTH', "created_at") = DATE_PART('MONTH', CURRENT_DATE)`)
       },
+
     });
-
-    // console.log(created_at.map((date) => (date.dataValues)));
-    // console.log(Date.now());
-
-    return res.json({ count, created_at });
+    return res.json(countPatientsWithSameDay);
   }
 
-  async getTypesSurgeries(req, res) {
-    return res.json({ ok: true });
+  async getPatientsForCurrentMonth(req, res) {
+    const patients = await Patient.findAndCountAll({
+      where: Sequelize.where(
+        Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')),
+        Sequelize.literal('DATE_PART(\'month\', CURRENT_DATE)')
+      ),
+      attributes: ['name', [Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')), 'mes']],
+    });
+    return res.json(patients);
   }
 
-  async getSurgeriesForThreeMonths(req, res) {
-    return res.json({ ok: true });
+  async getPatientsForLastMonth(req, res) {
+    const patients = await Patient.findAndCountAll({
+      where: Sequelize.where(
+        Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')),
+        Sequelize.literal('DATE_PART(\'month\', CURRENT_TIMESTAMP) - 1')
+      ),
+      attributes: ['name', [Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')), 'mes']],
+    });
+    return res.json(patients);
   }
 
-  async getExpensesSurgeriesForThreeMonths(req, res) {
-    return res.json({ ok: true });
+  async getPatientsForTwoMonthsAgo(req,res) {
+    const patients = await Patient.findAndCountAll({
+      where: Sequelize.where(
+        Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')),
+        Sequelize.literal('DATE_PART(\'month\', CURRENT_TIMESTAMP) - 2')
+      ),
+      attributes: ['name', [Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')), 'mes']],
+    });
+    return res.json(patients);
   }
+
+  async getExpensesForCurrentMonth(req,res) {
+    const sum = await Patient.sum('expenses', {
+      where: Sequelize.where(
+        Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')),
+        Sequelize.literal('DATE_PART(\'month\', CURRENT_TIMESTAMP)')
+      ),
+    });
+    return res.json(sum);
+  }
+
+  async getExpensesForLastMonth(req,res) {
+    const sum = await Patient.sum('expenses', {
+      where: Sequelize.where(
+        Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')),
+        Sequelize.literal('DATE_PART(\'month\', CURRENT_TIMESTAMP) -1')
+      ),
+    });
+    return res.json(sum);
+  }
+
+  async getExpensesForTwoMonths(req, res) {
+    const sum = await Patient.sum('expenses', {
+      where: Sequelize.where(
+        Sequelize.fn('DATE_PART', 'month', Sequelize.col('created_at')),
+        Sequelize.literal('DATE_PART(\'month\', CURRENT_TIMESTAMP) -2')
+      ),
+    });
+    return res.json(sum);
+  }
+
+  async getMaxMedicHistory(req,res) {
+    const maxmedic = await Patient.max('medic_history');
+    const totalCount = await Patient.count('medic_history')
+    return res.json({ maxmedic, totalCount });
+  }
+
 }
 
 export default new GraficQueryController();

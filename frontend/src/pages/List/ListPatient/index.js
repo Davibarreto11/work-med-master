@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { removePatient } from '../../../store/modules/register/registerPatient/actions';
 
+import { format, parseISO  } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
+
 import Header from '../../../components/Barside';
 import DefaultLayout from '../../_layouts/default/index';
 import {
@@ -71,7 +74,7 @@ export function ListPatient() {
                   <li><img src={Datail} alt="" /></li>
                   <li>🚀</li>
                   <li>{patient.name}</li>
-                  <li>31/08/2002</li>
+                  <li>{format(parseISO(patient.created_at), "dd' / 'MM' / 'yyyy", {locale: ptBR })}</li>
                   <li>
                     <Link to={`/update/patient/${patient.id}`}><img src={Edit} alt="Edit" /></Link>
                     <button onClick={() => handleRemove(patient.id)} type="button"><img src={Remove} alt="Remove" /></button>
@@ -115,11 +118,11 @@ export function ListPatient() {
                     </Part>
                     <Part>
                       <strong>DATA DA CIRURGIA</strong>
-                      <span>{patient.created_at}</span>
+                      <span>{format(parseISO(patient.created_at), "dd' / 'MM' / 'yyyy", {locale: ptBR })}</span>
                     </Part>
                     <Part>
                       <strong>TIPO DA CIRURGIA</strong>
-                      <span>{patient.Surgery.name}</span>
+                      <span>{patient.Surgery?.name ? patient.Surgery?.name : 'Cirgurgia fora dos registros'}</span>
                     </Part>
                     <Part>
                       <strong>PÓS OPERATÓRIO</strong>
@@ -127,11 +130,11 @@ export function ListPatient() {
                     </Part>
                     <Part>
                       <strong>SALA</strong>
-                      <span>{`${patient.Room.floor} - Sala ${patient.Room.number}`}</span>
+                      <span>{patient.Room?.floor ? `${patient.Room?.floor} - Sala ${patient.Room?.number}` : 'Sala fora dos registros'}</span>
                     </Part>
                     <Part>
                       <strong>MÉDICO RESPONSÁVEL</strong>
-                      <span>{patient.Doctor.name}</span>
+                      <span>{patient.Doctor?.name ? patient.Doctor?.name: 'Médico fora dos registros'}</span>
                     </Part>
                     <Part>
                       <strong>TOTAL GASTO</strong>

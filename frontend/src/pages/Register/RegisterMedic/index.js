@@ -46,7 +46,7 @@ export default function RegisterMedic() {
         </header>
 
         <span>Médico</span>
-        
+
         <Forms>
           <Form schema={schema} onSubmit={handleSubmit}>
             <InputWrapper size="double">

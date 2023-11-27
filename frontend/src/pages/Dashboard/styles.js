@@ -104,8 +104,23 @@ export const Box = styled.div`
     cursor: pointer;
   }
 
+  .icon {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 70% 70%;
+    outline: none;
+    padding-right: 2rem;
+    border: none;
+    width: .2rem;
+    cursor: pointer;
+  }
+
   width: 32%;
-  height: 30vh;
+  height: 32vh;
   padding: 15px;
   margin: 5px 0 5px 0;
   border-radius: 10px;

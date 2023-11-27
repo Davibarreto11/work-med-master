@@ -14,6 +14,7 @@ class Surgery extends Model {
 
     return this;
   }
+
 }
 
 export default Surgery;

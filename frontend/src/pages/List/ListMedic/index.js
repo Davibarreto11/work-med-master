@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { removeMedic } from '../../../store/modules/register/registerMedic/actions';
+
+import { format, parseISO  } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 
 import Header from '../../../components/Barside';
 import DefaultLayout from '../../_layouts/default/index';
@@ -25,12 +28,17 @@ export function ListMedic() {
 
   const [visible, setVisible] = useState(null);
   const [doctors, setDoctor] = useState([]);
-  // const [date, setDate] = useState(new Date());
+  const [patients, setPatients] = useState([])
 
-  // const dateFormatted = useMemo(
-  //   () => format(date, "d 'de' MMMM", { locale: pt }),
-  //   [date],
-  // );
+  useEffect(() => {
+    async function loadPatient() {
+      const response = await api.get('patients')
+
+      setPatients(response.data)
+    }
+
+    loadPatient()
+  }, [])
 
   useEffect(() => {
     async function loadMedic() {
@@ -71,12 +79,13 @@ export function ListMedic() {
                 ? handleToggleVisible(null) : handleToggleVisible(i))}
               >
                 <Infor>
+
                   <div class="group">
                     <li><img src={Datail} alt="detail" /></li>
                     <li><img src={userv} class="user-l"/></li>
                     <li>{doctor.name}</li>
                   </div>
-                  <li>31/08/2002</li>
+                  <li>{format(parseISO(doctor.createdAt), "dd' / 'MM' / 'yyyy", {locale: ptBR })}</li>
                   {/* <details> */}
                   <li>
                     {/* <summary> */}

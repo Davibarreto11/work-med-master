@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import api from '../../../../services/api';
+
+import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS, BarElement, CategoryScale, LinearScale,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,
@@ -10,17 +12,42 @@ ChartJS.register(
   BarElement,
 );
 
+export let surgerysTotal
+
 export function BarChart() {
+  const [monthActually, setMonthActually] = useState({})
+  const [lastMonth, setLastMonth] = useState({})
+  const [lastTwoMonth, setLastTwoMonth] = useState({})
+
+  useEffect(() => {
+    async function loadMedic() {
+      const [monthActually, lastMonth, lastTwoMonth] = await Promise.all([
+        api.get('/graficquerys/patientsformonth'),
+        api.get('/graficquerys/patientslastmonth'),
+        api.get('/graficquerys/patientstwomonth'),
+      ]);
+
+      setMonthActually(monthActually.data);
+      setLastMonth(lastMonth.data);
+      setLastTwoMonth(lastTwoMonth.data);
+    }
+
+    loadMedic();
+  }, []);
+
+
   const data = {
-    labels: ['Agosto', 'Setembro', 'Outubro'],
+    labels: [ `Mês ${lastTwoMonth.rows?.[0]?.mes ? lastTwoMonth.rows?.[0]?.mes : 0 }`, `Mês ${lastMonth.rows?.[0]?.mes ? lastMonth.rows?.[0]?.mes : 0 }`, `Mês ${ monthActually?.rows?.[0]?.mes ? monthActually?.rows?.[0]?.mes : 0 }`],
     datasets: [{
       label: '',
-      data: [10, 12, 11],
+      data: [lastTwoMonth.count, lastMonth.count, monthActually.count],
       backgroundColor: ['#AC3483'],
       // borderColor: 'black',
       borderWidth: 0,
     }],
   };
+
+  surgerysTotal = lastTwoMonth.count + lastMonth.count + monthActually.count
 
   const options = {
     borderSkipped: 'middle',
