@@ -1,25 +1,29 @@
 import { styled, css } from 'styled-components';
 
 export const Container = styled.div`
-  margin: 25px 0 0 40px;
-  flex: 1;
+margin: 25px 0 0 40px;
+flex: 1;
 
-  header {
-    display: flex;
-    align-items: center;
+header {
+  display: flex;
+  align-items: center;
 
-    h2 {
-      font-size: 26px;
-      margin: 2px 0 0 10px;
-    }
+  h2 {
+    font-size: 48px;
+    margin: 15px 0 10px 10px;
   }
+  img{
+    width:12px;
+      }
+}
 
-
-  span {
-    font-size: 12px;
-    color: #A4A4A4;
-    opacity: 0.8;
-  }
+  .sp {
+  font-size: 24px;
+  color: #A4A4A4;
+  opacity: 0.8;
+  padding-top:28px;
+  padding-left:20px;
+}
 
   a {
     color:  #308ECC;
@@ -31,7 +35,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: end;
   width: 65%;
-  margin: 30px auto;
+  margin: 14% auto;
   overflow-y:auto;
   overflow-x:hidden ;
   height:auto;
@@ -39,46 +43,72 @@ export const Wrapper = styled.div`
 
   a {
     button {
-    background: #FF7723;
-    border: 0;
-    padding: 10px 30px;
-    border-radius: 10px;
-    color: #FFF;
-    margin-bottom: 15px;
-  }
-  }
-`;
+      background: #FF7723;
+      border: 0;
+      padding: 12px 30px;
+      border-radius: 10px;
+      color: #FFF;
+      margin-bottom: 15px;
+      color: #FFF;
+      font-family: Montserrat;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
 
-export const List = styled.div`
-  width: 100%;
-
-    ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
-    margin: 7px 0 0 0;
-
-    li {
-      display: flex;
-      align-items: center;
-
-      button {
-        background: none;
-        border: 0;
-      }
-
-      img {
-        width: 15px;
-        margin-right: 15px;
+      img{
+        padding-left: 15px;
       }
     }
   }
 `;
 
+
+export const List = styled.div`
+width: 100%;
+
+  ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin: 7px 0 0 0;
+  border-radius: 13px;
+  background: #2A2A2B;
+  box-shadow: 0px 4px 23px 0px rgba(0, 0, 0, 0.25);
+  transition: 2s;
+  height: 65px;
+  cursor: pointer;
+
+  .user-l{
+    width:25px;
+  }
+  .group{
+    display: flex;
+    gap: 20px;
+    transition: 2s;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    transition: 2s;
+
+    button {
+      background: none;
+      border: 0;
+    }
+
+    img {
+      width: 18px;
+      margin-right: 15px;
+    }
+  }
+}  }
+`;
+
 export const Infor = styled.ul`
   background: #242424;
-  border-radius: 10px;
+  border-radius: 12px;
   margin-top: 15px;
   box-shadow: 0px 4px 23px rgba(0, 0, 0, 0.25);
 `;
@@ -94,7 +124,13 @@ export const MoreInfor = styled.div`
     color: #FFF;
     font-size: 20px;
   }
+  span {
+    font-size: 14px;
+    color: #A4A4A4;
+    opacity: 0.8;
+  }
 `;
+
 
 const sizes = {
   default: css`

@@ -17,7 +17,8 @@ import Edit from '../../../assets/editar.svg';
 import Remove from '../../../assets/excluir.svg';
 import Datail from '../../../assets/detailOrange.svg';
 import Rectangle from '../../../assets/rectanglePatient.svg';
-
+import userl from '../../../assets/userl.svg';
+import cad from '../../../assets/cadastrar.svg';
 import api from '../../../services/api';
 
 export function ListPatient() {
@@ -62,18 +63,20 @@ export function ListPatient() {
           <img src={Rectangle} alt="" />
           <h2>Listagem</h2>
         </header>
-        <span>Paciente</span>
+        <span class="sp">Paciente</span>
         <Wrapper>
-          <Link to="/register/patient"><button type="button">Cadastrar</button></Link>
+          <Link to="/register/patient"><button type="button">Cadastrar<img src={cad}/></button></Link>
           {patients.map((patient, i) => (
             <List key={patient.id}>
               <Badge onClick={() => (Number(visible)
                 ? handleToggleVisible(null) : handleToggleVisible(i))}
               >
                 <Infor>
+                <div class="group">
                   <li><img src={Datail} alt="" /></li>
-                  <li>🚀</li>
+                  <li><img src={userl} alt="" /></li>
                   <li>{patient.name}</li>
+                </div>
                   <li>{format(parseISO(patient.created_at), "dd' / 'MM' / 'yyyy", {locale: ptBR })}</li>
                   <li>
                     <Link to={`/update/patient/${patient.id}`}><img src={Edit} alt="Edit" /></Link>
