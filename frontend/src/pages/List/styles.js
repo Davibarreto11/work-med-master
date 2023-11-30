@@ -23,9 +23,9 @@ export const Title = styled.div`
 
   header img{
     height: 2rem;
-    width: 1rem; 
+    width: 1rem;
   }
-  
+
   span {
     margin-left: 1rem;
     font-size: 1em;
@@ -59,13 +59,13 @@ export const Item = styled.div`
     align-items: center;
 
     span {
-      font-size: 18px;
+      font-size: 24px;
       align-self: flex-start;
       padding: 15px 0 0px 15px;
     }
 
     strong {
-      font-size: 12px;
+      font-size: 16px;
       color: #A4A4A4;
       align-self: flex-start;
       padding: 0px 0 0px 15px;
@@ -80,16 +80,27 @@ export const Item = styled.div`
       text-decoration: none;
       align-self: stretch;
 
+
       button {
         width: 100%;
         border-radius: 0 0 14px 14px;
         border: 0;
-        padding: 10px 10px;
+        padding: 20px 10px;
         color: #fff;
+        color: #FFF;
+
+font-family: Montserrat;
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+font-variant: all-small-caps;
+letter-spacing: 2.64px;
       }
     }
     button:hover{
-      opacity: 0.7;
+      opacity: 0.96;
+      transition: 300ms;
     }
   }
 `;
