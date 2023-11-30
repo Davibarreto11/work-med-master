@@ -96,9 +96,9 @@ function Dashboard() {
                 </div>
               </div>
               <div className="bot">
-                {doctor01.map((doctor) => (
-                  <div key={doctor.id}>
-                    <h4>{doctor.name}<span style={{ color: '#FF7723' }}>{doctor.speciality}</span></h4>
+                {doctor01?.map((doctor) => (
+                  <div key={doctor?.id}>
+                    <h4>{doctor?.name}<span style={{ color: '#FF7723' }}>{doctor?.speciality}</span></h4>
                     <p>Total de Cirurgias</p>
                   </div>
                 ))}
