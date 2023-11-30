@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -30,6 +30,7 @@ import {
 function Dashboard() {
 
   const name = useSelector(((state) => state.user.profile.name));
+  const [doctor01, setDoctor01] = useState()
   const [medicHistoric, setMedicHistoric] = useState('');
   const [doctors, setDoctors] = useState([]);
   const [surgeryToday, setSurgeryToday] = useState();
@@ -57,6 +58,11 @@ function Dashboard() {
         console.log(error)
       })
   }, []);
+
+
+  useEffect(() => {
+    setDoctor01(doctors.filter(doctor => doctor.id === 1))
+  }, [doctors])
 
   return (
     <DefaultLayout>
@@ -90,13 +96,13 @@ function Dashboard() {
                 </div>
               </div>
               <div className="bot">
-                  {doctors.map(doctor => (
-                    <div>
-                      <h4>{doctor.name} <span style={{ color: '#FF7723' }}>{doctor.speciality}</span></h4>
-                      <p>Total de Cirurgias</p>
-                    </div>
-                  ))}
-                <div>
+                {doctor01.map((doctor) => (
+                  <div key={doctor.id}>
+                    <h4>{doctor.name}<span style={{ color: '#FF7723' }}>{doctor.speciality}</span></h4>
+                    <p>Total de Cirurgias</p>
+                  </div>
+                ))}
+              <div>
                   <DoughnutDoctorChart />
                 </div>
               </div>
