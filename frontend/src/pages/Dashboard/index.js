@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -59,9 +59,8 @@ function Dashboard() {
       })
   }, []);
 
-
   useEffect(() => {
-    setDoctor01(doctors.filter(doctor => doctor.id === 1))
+    console.log(doctors.filter(doctor => doctor.id === 1))
   }, [doctors])
 
   return (
@@ -96,9 +95,9 @@ function Dashboard() {
                 </div>
               </div>
               <div className="bot">
-                {doctor01.map((doctor) => (
-                  <div key={doctor.id}>
-                    <h4>{doctor.name}<span style={{ color: '#FF7723' }}>{doctor.speciality}</span></h4>
+                {doctor01?.map((doctor) => (
+                  <div key={doctor?.id}>
+                    <h4>{doctor?.name ? doctor?.name: 'sem registro'}<span style={{ color: '#FF7723' }}>{doctor?.speciality  ? doctor?.speciality: 'sem registro'}</span></h4>
                     <p>Total de Cirurgias</p>
                   </div>
                 ))}
