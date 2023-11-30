@@ -20,10 +20,10 @@ export const Title = styled.div`
     display: flex;
     align-items: center;
   }
-  
+
   header img{
     height: 2rem;
-    width: 1rem; 
+    width: 1rem;
   }
 
   span {
@@ -51,7 +51,6 @@ export const Item = styled.div`
     border-radius: 14px;
     color: #FFF;
     font-size: 16px;
-    font-weight: 300;
     width: 20%;
     height: auto;
 
@@ -60,13 +59,13 @@ export const Item = styled.div`
     align-items: center;
 
     span {
-      font-size: 1rem;
+      font-size: 24px;
       align-self: flex-start;
       padding: 15px 0 0px 15px;
     }
 
     strong {
-      font-size: .8em;
+      font-size: 16px;
       color: #A4A4A4;
       align-self: flex-start;
       padding: 0px 0 0px 15px;
@@ -81,16 +80,27 @@ export const Item = styled.div`
       text-decoration: none;
       align-self: stretch;
 
+
       button {
         width: 100%;
         border-radius: 0 0 14px 14px;
         border: 0;
-        padding: 10px 10px;
+        padding: 20px 10px;
         color: #fff;
+        color: #FFF;
+
+font-family: Montserrat;
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+font-variant: all-small-caps;
+letter-spacing: 2.64px;
       }
     }
     button:hover{
-      opacity: 0.7;
+      opacity: 0.96;
+      transition: 300ms;
     }
   }
 `;

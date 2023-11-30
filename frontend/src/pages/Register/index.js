@@ -37,28 +37,28 @@ export default function Register() {
             <strong style={{ color: '#16A085' }}>Medico</strong>
             <img src={ImageDoctor} alt="" />
 
-            <Link to="/register/doctor"><button style={{ background: 'linear-gradient(#16A085, #16A0854D)' }} type="submit">Começar</button></Link>
+            <Link to="/register/doctor"><button style={{ background: 'linear-gradient(180deg, #16A085 -47.33%, rgba(22, 160, 133, 0.30) 209.33%)' }} type="submit">Começar</button></Link>
           </form>
           <form>
             <span>Cadastrar</span>
             <strong style={{ color: '#FF7723' }}>Paciente</strong>
             <img src={ImagePatient} alt="" />
 
-            <Link to="/register/patient"><button style={{ background: 'linear-gradient(#FF7723, #FF77234D)' }} type="submit">Começar</button></Link>
+            <Link to="/register/patient"><button style={{ background: 'linear-gradient(180deg, #FF7723 -47.33%, rgba(255, 119, 35, 0.30) 209.33%)' }} type="submit">Começar</button></Link>
           </form>
           <form>
             <span>Cadastrar</span>
             <strong style={{ color: '#308ECC' }}>Sala</strong>
             <img src={ImageRoom} alt="" />
 
-            <Link to="/register/room"><button style={{ background: 'linear-gradient(#308ECC, #308ECC4D)' }} type="submit">Começar</button></Link>
+            <Link to="/register/room"><button style={{ background: 'linear-gradient(181deg, #308ECC -17.57%, rgba(48, 142, 204, 0.22) 224.02%)' }} type="submit">Começar</button></Link>
           </form>
           <form>
             <span>Cadastrar</span>
             <strong style={{ color: '#AC3483' }}>Cirurgia</strong>
             <img src={ImageSurgery} alt="" />
 
-            <Link to="/register/surgery"><button style={{ background: 'linear-gradient(#AC3483, #AC34834D)' }} type="submit">Começar</button></Link>
+            <Link to="/register/surgery"><button style={{ background: 'linear-gradient(180deg, #AC3483 -47.33%, rgba(172, 52, 131, 0.30) 230%)' }} type="submit">Começar</button></Link>
           </form>
         </Item>
       </Container>
